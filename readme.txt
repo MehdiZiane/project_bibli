@@ -1,2 +1,2 @@
-branch customer 
-this is here we gonna implemented the class customer who will have some object like name, adress, mail, phone, etc.
+branch UML
+this is here we gonna graphicaly show how the class are suppsoe to interact wich other
