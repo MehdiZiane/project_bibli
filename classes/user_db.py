@@ -7,14 +7,14 @@ class UserDatabase:
 
     def load_users_from_file(self):
         try:
-            with open("./bd/user.json", "r") as file:
+            with open("./db/user.json", "r") as file:
                 self.users = json.load(file)
                 return self.users
         except FileNotFoundError:
             return []
 
     def save_users_to_file(self):
-        with open("./bd/user.json","w") as file:
+        with open("./db/user.json","w") as file:
             json.dump(self.users, file, indent=4)
 
     def create_account(self, nom, prenom, email, password):

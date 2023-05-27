@@ -7,14 +7,14 @@ class BookDatabase:
     
     def load_books_from_file(self):
         try:
-            with open("./bd/book.json", "r") as file:
+            with open("./db/book.json", "r") as file:
                 self.books = json.load(file)
                 return self.books
         except FileNotFoundError:
             return []
 
     def save_books_to_file(self):
-        with open("./bd/book.json", "w") as file:
+        with open("./db/book.json", "w") as file:
             json.dump(self.books, file, indent=4)
     
     def ajouter_livre(self, book_id, title, author, publication_year, isbn, category):
