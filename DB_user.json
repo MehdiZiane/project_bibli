@@ -1,0 +1,39 @@
+[
+    {
+        "id": 1,
+        "nom": "Doe",
+        "prenom": "John",
+        "mdp": "mdp",
+        "email": "john.doe@example.com"
+    },
+    {
+        "id": 2,
+        "nom": "Smith",
+        "prenom": "Jane",
+        "mdp": "mdp1",
+        "email": "jane.smith@example.com"
+    },
+    {
+        "id": 3,
+        "nom": "Johnson",
+        "prenom": "David",
+        "mdp": "ad",
+        "email": "david.johnson@example.com"
+    },
+    {
+        "id": 4,
+        "nom": "Johnson",
+        "prenom": "Sarah",
+        "mdp": "ad",
+        "email": "sarah.johnson@example.com",
+        "admin": true
+    },
+    {
+        "id": 5,
+        "nom": "ziane",
+        "prenom": "mehdi",
+        "mdp": "1234",
+        "email": "ziame@outlook.be",
+        "admin": false
+    }
+]
