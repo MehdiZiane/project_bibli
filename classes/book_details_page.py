@@ -3,7 +3,8 @@ import json
 from classes.class_book import Book
 
 class BookDetailsPage():
-    def __init__(self):
+    def __init__(self, window):
+        self.window = window
         self.book = []
 
     def load_books(self):
