@@ -4,11 +4,47 @@ from tkinter import messagebox
 from classes.class_book import Book
 from classes.user_db import UserDatabase
 from classes.class_user import User
+from classes.window import Window
 
-class Homepage():
+class Homepage(Window):
     def __init__(self):
+        super().__init__()
         self.books = []
         self.user_db = UserDatabase()
+    
+    def display_book(self):
+
+        titre = tkinter.Label(self.window, text="Bienvenue dans la bibliothèque", font=("Arial", 24))
+        titre.pack(pady=20)
+
+        # Création du cadre gauche pour afficher les livres
+        frame_left = tkinter.Frame(self.window)
+        frame_left.pack(side='left', padx=20, pady=20)
+        
+        # Charger les livres à partir du fichier JSON
+        self.load_books()
+
+        # Boucle sur les livres et les afficher
+        for book in self.books:
+            button_text= f"{book.title} - {book.author}"
+            button = tkinter.Button(self.window, text=button_text, command=lambda b=book: self.book_button_click(b))
+            button.pack(pady=5)
+            #label = tkinter.Label(fenetre, text=book.title)
+            #label.pack()
+        
+        #label qui accueillera les info suite a la connexion de l user
+        self.user_label = tkinter.Label(self.window, text='', font=("Arial", 16))
+        self.user_label.pack(pady=10)
+    
+    def display_login_signup(self):
+        # Bouton Log In
+        log_in_button = tkinter.Button(frame_right, text='Log In', command=self.login)
+        log_in_button.pack(pady=10)
+
+        # Bouton Sign Up
+        sign_up_button = tkinter.Button(frame_right, text='Sign Up', command=self.create_account_dialog)
+        sign_up_button.pack(pady=10)
+
     
     def load_books(self):
         try:
@@ -79,47 +115,36 @@ class Homepage():
         
         dialog.destroy()
 
-    def run_homepage(self):        
-        fenetre = tkinter.Tk()
-        #nom de la fenetrer
-        fenetre.title('hello library')
-        
-        titre = tkinter.Label(fenetre, text="Bienvenue dans la bibliothèque", font=("Arial", 24))
-        titre.pack(pady=20)
+        #titre = tkinter.Label(fenetre, text="Bienvenue dans la bibliothèque", font=("Arial", 24))
+        #titre.pack(pady=20)
         
         # Création du cadre gauche pour afficher les livres
-        frame_left = tkinter.Frame(fenetre)
-        frame_left.pack(side='left', padx=20, pady=20)
+        #frame_left = tkinter.Frame(fenetre)
+        #frame_left.pack(side='left', padx=20, pady=20)
         
         # Charger les livres à partir du fichier JSON
-        self.load_books()
+        #self.load_books()
 
         # Boucle sur les livres et les afficher
-        for book in self.books:
-            button_text= f"{book.title} - {book.author}"
-            button = tkinter.Button(fenetre, text=button_text, command=lambda b=book: self.book_button_click(b))
-            button.pack(pady=5)
-            #label = tkinter.Label(fenetre, text=book.title)
-            #label.pack()
+        #for book in self.books:
+        #    button_text= f"{book.title} - {book.author}"
+        #   button = tkinter.Button(fenetre, text=button_text, command=lambda b=book: self.book_button_click(b))
+        #    button.pack(pady=5)
+        #    #label = tkinter.Label(fenetre, text=book.title)
+        #   #label.pack()
         
         #label qui accueillera les info suite a la connexion de l user
-        self.user_label = tkinter.Label(fenetre, text='', font=("Arial", 16))
-        self.user_label.pack(pady=10)
+        #self.user_label = tkinter.Label(fenetre, text='', font=("Arial", 16))
+        #self.user_label.pack(pady=10)
 
         # Création du cadre droit pour les boutons Log In et Sign Up
-        frame_right = tkinter.Frame(fenetre)
-        frame_right.pack(side='right', padx=20, pady=20)
+        #frame_right = tkinter.Frame(fenetre)
+        #frame_right.pack(side='right', padx=20, pady=20)
         
         # Bouton Log In
-        log_in_button = tkinter.Button(frame_right, text='Log In', command=self.login)
-        log_in_button.pack(pady=10)
+        #log_in_button = tkinter.Button(frame_right, text='Log In', command=self.login)
+        #log_in_button.pack(pady=10)
 
         # Bouton Sign Up
-        sign_up_button = tkinter.Button(frame_right, text='Sign Up', command=self.create_account_dialog)
-        sign_up_button.pack(pady=10)
-        
-        #bouton = tkinter.Button(fenetre, text= 'hello')
-        #bouton.pack()
-        
-        
-        fenetre.mainloop()
+        #sign_up_button = tkinter.Button(frame_right, text='Sign Up', command=self.create_account_dialog)
+        #sign_up_button.pack(pady=10)
