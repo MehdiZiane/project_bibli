@@ -17,14 +17,14 @@ class Homepage(Window):
     
     def display_book(self):
 
-        frame_titre = tkinter.Frame(self.window)
-        frame_titre.pack(side='top', padx=20, pady=20)
-        titre = tkinter.Label(self.window, text="Bienvenue dans la bibliothèque", font=("Arial", 24))
+        self.frame_titre = tkinter.Frame(self.window)
+        self.frame_titre.pack(side='top', padx=20, pady=20)
+        titre = tkinter.Label(self.frame_titre, text="Bienvenue dans la bibliothèque", font=("Arial", 24))
         titre.pack(pady=20)
 
         # Création du cadre gauche pour afficher les livres
-        frame_left = tkinter.Frame(self.window)
-        frame_left.pack(side='left', padx=20, pady=20)
+        self.frame_left = tkinter.Frame(self.window)
+        self.frame_left.pack(side='left', padx=20, pady=20)
         
         # Charger les livres à partir du fichier JSON
         self.load_books()
@@ -32,19 +32,20 @@ class Homepage(Window):
         # Boucle sur les livres et les afficher
         for book in self.books:
             button_text= f"{book.title} - {book.author}"
-            button = tkinter.Button(self.window, text=button_text, command=self.open_book_detail_page)
+            button = tkinter.Button(self.frame_left, text=button_text, command=lambda book=book: self.open_book_detail_page(book))
             button.pack(pady=5)
-            #label = tkinter.Label(fenetre, text=book.title)
-            #label.pack()
         
         #label qui accueillera les info suite a la connexion de l user
         self.user_label = tkinter.Label(self.window, text='', font=("Arial", 16))
         self.user_label.pack(pady=10)
 
-    def open_book_detail_page(self):
-        self.frame_right.destroy()
-        BookDetailsPage(self.window)
+    def open_book_detail_page(self, book):
         
+        self.frame_right.destroy()
+        self.frame_left.destroy()
+        self.frame_titre.destroy()
+        book_details_page = BookDetailsPage(self.window, book)
+        book_details_page.display_book_details()
     
     def display_login_signup(self):
         
