@@ -12,6 +12,9 @@ class Homepage(Window):
         super().__init__()
         self.books = []
         self.user_db = UserDatabase()
+        self.run_display()
+    
+    def run_display(self):
         self.display_book()
         self.display_login_signup()
     
@@ -44,7 +47,7 @@ class Homepage(Window):
         self.frame_right.destroy()
         self.frame_left.destroy()
         self.frame_titre.destroy()
-        book_details_page = BookDetailsPage(self.window, book)
+        book_details_page = BookDetailsPage(self.window, book, self.run_display)
         book_details_page.display_book_details()
     
     def display_login_signup(self):
