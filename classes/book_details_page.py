@@ -57,6 +57,9 @@ class BookDetailsPage():
         back_button = tk.Button(self.frame_detail_left, text="Retour", command=self.return_to_homepage)
         back_button.pack()
 
+        reserve_button = tk.Button(self.frame_detail_right, text="reserve")
+        reserve_button.pack()
+
     def return_to_homepage(self):
         self.frame_detail_left.destroy()  # Fermer la page des détails du livre
         self.frame_detail_right.destroy()
