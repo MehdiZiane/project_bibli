@@ -48,7 +48,7 @@ class Homepage(Window):
         self.frame_left.destroy()
         self.frame_titre.destroy()
         book_details_page = BookDetailsPage(self.window, book, self.run_display)
-        book_details_page.display_book_details()
+        book_details_page.run_display_book()
     
     def display_login_signup(self):
         
