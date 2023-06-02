@@ -62,6 +62,10 @@ class BookDetailsPage():
         reserve_button = tk.Button(self.frame_detail_right, text="reserve")
         reserve_button.pack()
         
+        #Bouton pour annuler une réservation
+        #cancel_reservation_button = tk.Button(self.frame_detail_right, text="Cancel reservation")
+        #cancel_reservation_button.pack()
+        
         #Bouton d'ajout à la liste de souhaits
         wishlist_button = tk.Button(self.frame_detail_right, text="Favoris", command=self.wishlist)
         wishlist_button.pack()
