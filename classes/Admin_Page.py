@@ -25,12 +25,12 @@ label_title.pack()
 #création bouton "Gestion DB livres"
 Frame_Button_1 =  Frame(Admin_Window, bg='#15c3f2')
 Frame_Button_1.pack(side=LEFT, )
-DB_Book_Button = Button(Frame_Button_1, text='Gestion DB Livres', font=("Arial",10), command=gestion_db_livres)
+DB_Book_Button = Button(Frame_Button_1, text='Gestion DB Livres', font=("Arial",10), command= gestion_db_livres)
 DB_Book_Button.pack(expand=YES, padx=40,)
 #création bouton "Gestion DB Users"
 Frame_Button_2 =  Frame(Admin_Window, bg='#15c3f2')
 Frame_Button_1.pack(side=LEFT, )
-DB_Users_Button = Button(Frame_Button_1, text='Gestion DB Utilisateurs', font=("Arial",10), command=gestion_db_users)
+DB_Users_Button = Button(Frame_Button_1, text='Gestion DB Utilisateurs', font=("Arial",10), command= gestion_db_users)
 DB_Users_Button.pack(expand=YES, padx=40,)
 Admin_Window.mainloop()
 
