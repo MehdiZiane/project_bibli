@@ -63,7 +63,7 @@ class BookDetailsPage():
         reserve_button.pack()
         
         #Bouton d'ajout à la liste de souhaits
-        wishlist_button = tk.Button(self.frame_detail_right, text="Favoris")
+        wishlist_button = tk.Button(self.frame_detail_right, text="Favoris", command=self.wishlist)
         wishlist_button.pack()
         
     def return_to_homepage(self):
