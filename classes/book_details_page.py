@@ -4,13 +4,12 @@ from classes.class_book import Book
 
 class BookDetailsPage():
     
-    def __init__(self, window, book, callback):
+    def __init__(self, window, book, callback, wishlist):
         
         self.window = window
         self.book = book
         self.callback = callback
-        self.wishlist = []
-        #liste de souhaits
+        self.wishlist = wishlist
 
     def run_display_book(self):
         

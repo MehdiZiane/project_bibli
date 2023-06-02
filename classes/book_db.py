@@ -74,8 +74,10 @@ class Wishlist(Book):
         if self.books:
             print("Liste de souhaits :")
             for books in self.books:
-                print("Titre :", books.titre)
+                print("Titre :", books.title)
                 print("Auteur :", books.auteur)
-                print()
+                print("Année de publication", books.publication_year)
+                print("Numéro ibsn", books.isbn)
+                print("Genre", books.category)
         else:
             print("La liste de souhaits est vide.")
