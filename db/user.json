@@ -35,5 +35,13 @@
         "mdp": "1234",
         "email": "ziame@outlook.be",
         "admin": false
+    },
+    {
+        "id": 6,
+        "nom": "ze",
+        "prenom": "ze",
+        "mdp": "ze",
+        "email": "ze",
+        "admin": false
     }
 ]

@@ -12,6 +12,7 @@ class Homepage(Window):
         super().__init__()
         self.books = []
         self.user_db = UserDatabase()
+        self.logged_in_user = None
         self.run_display()
     
     def run_display(self):
@@ -47,7 +48,7 @@ class Homepage(Window):
         self.frame_right.destroy()
         self.frame_left.destroy()
         self.frame_titre.destroy()
-        book_details_page = BookDetailsPage(self.window, book, self.run_display)
+        book_details_page = BookDetailsPage(self.window, book, self.run_display, self.logged_in_user)
         book_details_page.run_display_book()
     
     def display_login_signup(self):
@@ -127,6 +128,7 @@ class Homepage(Window):
         user = self.user_db.authenticate_user(email, password)
         if user:
             messagebox.showinfo('Success', 'Login successful!')
+            self.logged_in_user = user
             self.user_label.config(text=f"Welcome, {user['prenom']} {user['nom']}")  # Mettez à jour le label avec les informations de l'utilisateur
         else:
             messagebox.showerror('Error', 'Invalid email or password.')

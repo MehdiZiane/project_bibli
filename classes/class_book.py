@@ -8,4 +8,12 @@ class Book:
         self.publication_year = publication_year
         self.isbn = isbn
         self.category = category
+        self.is_reserved = False
+        self.reserve_by = None
+    
+    def reserve_book(self):
+        self.is_reserved = True
+    
+    def cancel_reservation(self):
+        self.is_reserved = False
         
