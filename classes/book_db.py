@@ -46,3 +46,36 @@ class BookDatabase:
             print(f"Livre avec ID {book_id} supprimé.")
         else:
             print(f"Livre avec ID {book_id} introuvable.")
+
+class Wishlist(Book):
+    def __init__(self):
+        self.books = []
+
+    def ajouter_livre(self, books):
+        """Cette fontion permet à l'utilisateur d"ajouter un livre qu'il aimerait réserver ou qu'il a aimé dans une wishlist"""
+        
+        self.books.append(books)
+        print("Un livre a été ajouté dans la liste de souhaits.")
+
+    def retirer_livre(self, books):
+        """Cette fonction permet à l'utilisateur de supprimer un livre de sa wishlist. 
+        Si le livre n'est pas dans la DB de la wishlist, l'utilisateur recevra un message le notifiant de l'échec"""
+        
+        if books in self.books:
+            self.books.remove(books)
+            print("Un livre a été retiré de la liste de souhaits.")
+        else:
+            print("Ce livre n'est pas dans la liste de souhaits !")
+
+    def afficher_liste(self):
+        """Cette fonction permet à l'utilisateur d'afficher et de consulter sa wishlist complète.
+        Si la liste de souhaits ne contient pas de livres, l'utilisateur recevra une notification"""
+        
+        if self.books:
+            print("Liste de souhaits :")
+            for books in self.books:
+                print("Titre :", books.titre)
+                print("Auteur :", books.auteur)
+                print()
+        else:
+            print("La liste de souhaits est vide.")

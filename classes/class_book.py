@@ -17,3 +17,6 @@ class Book:
     def cancel_reservation(self):
         self.is_reserved = False
         
+    def add_to_wishlist(self):
+        self.add_wishlist = True
+        
