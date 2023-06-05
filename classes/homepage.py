@@ -6,6 +6,7 @@ from classes.user_db import UserDatabase
 from classes.class_user import User
 from classes.window import Window
 from classes.book_details_page import BookDetailsPage
+from Admin_Page import Admin_Page
 
 class Homepage(Window):
     def __init__(self):
@@ -130,7 +131,21 @@ class Homepage(Window):
             messagebox.showinfo('Success', 'Login successful!')
             self.logged_in_user = user
             self.user_label.config(text=f"Welcome, {user['prenom']} {user['nom']}")  # Mettez à jour le label avec les informations de l'utilisateur
+            with open('user.json', 'r') as f:
+                users_data = json.load(f)
+        
+        for users in users_data:
+            admin_status = users['isAdmin']
+            return(users)
+            if admin_status == True:
+                self.frame_right.destroy()
+                self.frame_left.destroy() 
+                admin_page = Admin_Page()
+                admin_page.run_display()
+                return(admin_page)
         else:
             messagebox.showerror('Error', 'Invalid email or password.')
         
         dialog.destroy()
+        
+        
