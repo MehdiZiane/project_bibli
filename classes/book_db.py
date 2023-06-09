@@ -8,10 +8,9 @@ class BookDatabase:
         self.books = self.load_books_from_file()
     
     def load_books_from_file(self):
-        """ Function enabling the user to search a book in the library 
+        """ Function that open a file to read a book
 
-        Returns:
-            _type_: if a book is not registered in the database, the programme returns to the previous display.
+        Returns: if a book is not registered in the database, the programme returns to the previous display.
         """
         try:
             with open("./db/book.json", "r") as file:
@@ -30,7 +29,7 @@ class BookDatabase:
         """ Function for adding a book to the database
 
         Args:
-            book_id (?): to enter the id of a book
+            book_id : to enter the id of a book
             title (char): to enter a title of a book
             author (char): to enter the author of a book
             publication_year (int): to enter the year of publication of a book

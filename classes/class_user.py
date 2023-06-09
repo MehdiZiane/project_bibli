@@ -11,9 +11,5 @@ class User:
         self.wishlist = []
 
     def afficher_infos(self):
-        """ Function for displaying users informations
-
-        Returns:
-            _type_: _description_
-        """
+    
         return f"Utilisateur: {self.nom} {self.prenom}\nID: {self.id}\nEmail: {self.email}\n"

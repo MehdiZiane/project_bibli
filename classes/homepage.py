@@ -11,7 +11,7 @@ class Homepage(Window):
     """ Class use for display the homepage of your library app
 
     Args:
-        Window (class): class to homepage inherit
+        Window : class to homepage inherit
     """
     def __init__(self):
         super().__init__()
@@ -52,7 +52,7 @@ class Homepage(Window):
         """ Function used to open a page giving details of a book 
 
         Args:
-            book (char): class to homepage inherit
+            book : class to homepage inherit
         """
         
         self.frame_right.destroy()
