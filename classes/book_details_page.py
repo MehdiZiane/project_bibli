@@ -1,6 +1,7 @@
 import tkinter as tk
 import json
 from classes.class_book import Book
+from classes.wishlist import Wishlist
 
 class BookDetailsPage():
     

@@ -1,3 +1,5 @@
+import json
+
 class Wishlist:
     """ Class use for create a wishlist
     """
@@ -11,6 +13,7 @@ class Wishlist:
         
         self.books.append(books)
         print("Un livre a été ajouté dans la liste de souhaits.")
+        self.sauvegarder_wishlist()
 
     def retirer_livre(self, books):
         """ Function enabling thr user to remove a book from his wishlist 
@@ -36,3 +39,7 @@ class Wishlist:
                 print("Genre", books.category)
         else:
             print("La liste de souhaits est vide.")
+            
+    def sauvegarder_wishlist(self):
+        with open("user.json", "w") as file:
+            json.dump(self.books, file)
