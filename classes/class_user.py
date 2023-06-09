@@ -8,6 +8,7 @@ class User:
         self.mdp = mdp
         self.email = email
         self.isAdmin = isAdmin
+        self.wishlist = []
 
     def afficher_infos(self):
         """ Function for displaying users informations
