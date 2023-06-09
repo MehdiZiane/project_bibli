@@ -6,14 +6,8 @@ from classes.user_db import UserDatabase
 from classes.class_user import User
 from classes.window import Window
 from classes.book_details_page import BookDetailsPage
-from Admin_Page import Admin_Page
 
 class Homepage(Window):
-    """ Class use for display the homepage of your library app
-
-    Args:
-        Window (char): class to homepage inherit
-    """
     def __init__(self):
         super().__init__()
         self.books = []
@@ -32,29 +26,24 @@ class Homepage(Window):
         titre = tkinter.Label(self.frame_titre, text="Bienvenue dans la bibliothèque", font=("Arial", 24))
         titre.pack(pady=20)
 
-        # Creating the left frame for displaying books
+        # Création du cadre gauche pour afficher les livres
         self.frame_left = tkinter.Frame(self.window)
         self.frame_left.pack(side='left', padx=20, pady=20)
         
-        # Loading books from a JSON file
+        # Charger les livres à partir du fichier JSON
         self.load_books()
 
-        # Loop over books and display them
+        # Boucle sur les livres et les afficher
         for book in self.books:
             button_text= f"{book.title} - {book.author}"
             button = tkinter.Button(self.frame_left, text=button_text, command=lambda book=book: self.open_book_detail_page(book))
             button.pack(pady=5)
         
-        # Label which will receive information after the user logs in
+        #label qui accueillera les info suite a la connexion de l user
         self.user_label = tkinter.Label(self.window, text='', font=("Arial", 16))
         self.user_label.pack(pady=10)
 
     def open_book_detail_page(self, book):
-        """ Function used to open a page giving details of a book 
-
-        Args:
-            book (char): class to homepage inherit
-        """
         
         self.frame_right.destroy()
         self.frame_left.destroy()
@@ -63,17 +52,15 @@ class Homepage(Window):
         book_details_page.run_display_book()
     
     def display_login_signup(self):
-        """ Function that displays the library login and registration buttons
-        """
         
         self.frame_right = tkinter.Frame(self.window)
         self.frame_right.pack(side = 'right', padx=20, pady=20)
         
-        # Button Log In
+        # Bouton Log In
         log_in_button = tkinter.Button(self.frame_right, text='Log In', command=self.login)
         log_in_button.pack(pady=10)
 
-        # Button Sign Up
+        # Bouton Sign Up
         sign_up_button = tkinter.Button(self.frame_right, text='Sign Up', command=self.create_account_dialog)
         sign_up_button.pack(pady=10)
 
@@ -88,22 +75,11 @@ class Homepage(Window):
             self.books = []
 
     def create_account(self, nom, prenom, email, password, dialog):
-        """ Function that allows the user to enter the data needed to create an account in the library.
-
-        Args:
-            nom (char): the name the user will choose
-            prenom (char): the first name that the user will choose
-            email (char): the email address that the user will choose
-            password (char): the password that the user will choose
-            dialog (char): the message displayed to the user
-        """
         self.user_db.create_account(nom, prenom, email, password)
         messagebox.showinfo('Success', 'Account created successfully!')
         dialog.destroy()
     
     def create_account_dialog(self):
-        """ Function that displays the dialog box where the user can enter him details to create a user account.
-        """
         dialog = tkinter.Toplevel()
         dialog.title('Create Account')
 
@@ -131,8 +107,6 @@ class Homepage(Window):
         create_button.pack(pady=10)
     
     def login(self):
-        """ Function enablling the user to connect to his user account in the library
-        """
         dialog = tkinter.Toplevel()
         dialog.title('Log In')
 
@@ -150,34 +124,13 @@ class Homepage(Window):
         login_button.pack(pady=10)
 
     def check_login(self, email, password, dialog):
-        """ Function that checks the information the user has entered for their connection
-
-        Args:
-            email (char): the email address used by thr user
-            password (char): the password used by the user
-            dialog (char): the message displayed to the user
-        """
-        # Use the UserDatabase class to check authentication
+        # Utilisez la classe UserDatabase pour vérifier l'authentification
         user = self.user_db.authenticate_user(email, password)
         if user:
             messagebox.showinfo('Success', 'Login successful!')
             self.logged_in_user = user
-            self.user_label.config(text=f"Welcome, {user['prenom']} {user['nom']}")  # Update the label with the user's details
-            with open('user.json', 'r') as f:
-                users_data = json.load(f)
-        
-        for users in users_data:
-            admin_status = users['isAdmin']
-            return(users)
-            if admin_status == True:
-                self.frame_right.destroy()
-                self.frame_left.destroy() 
-                admin_page = Admin_Page()
-                admin_page.run_display()
-                return(admin_page)
+            self.user_label.config(text=f"Welcome, {user['prenom']} {user['nom']}")  # Mettez à jour le label avec les informations de l'utilisateur
         else:
             messagebox.showerror('Error', 'Invalid email or password.')
         
         dialog.destroy()
-        
-        
