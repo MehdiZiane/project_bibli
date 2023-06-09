@@ -11,7 +11,7 @@ class Homepage(Window):
     """ Class use for display the homepage of your library app
 
     Args:
-        Window (char): class to homepage inherit
+        Window (class): class to homepage inherit
     """
     def __init__(self):
         super().__init__()
@@ -94,7 +94,7 @@ class Homepage(Window):
             prenom (char): the first name that the user will choose
             email (char): the email address that the user will choose
             password (char): the password that the user will choose
-            dialog (char): the message displayed to the user
+            dialog : the message displayed to the user
         """
         self.user_db.create_account(nom, prenom, email, password)
         messagebox.showinfo('Success', 'Account created successfully!')
@@ -154,7 +154,7 @@ class Homepage(Window):
         Args:
             email (char): the email address used by thr user
             password (char): the password used by the user
-            dialog (char): the message displayed to the user
+            dialog : the message displayed to the user
         """
         # Use the UserDatabase class to check authentication
         user = self.user_db.authenticate_user(email, password)
