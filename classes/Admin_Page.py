@@ -9,13 +9,10 @@ from classes.book_details_page import BookDetailsPage
 
 class Admin_Page(Homepage):
     def __init__(self):
-        super(Homepage).__init__()
+        super().__init__()
         self.window.title("Admin_Page")
         self.window.configure(bg="#15c3f2")
-        self.run_display()
-        
-        #création fenêtre "Admin Page
-        Admin_Window = tkinter()
+    
         
         # # Affichage de la page
         # Admin_Window.title('Bibliothèque des 4 rives - Admin Page')
@@ -35,21 +32,15 @@ class Admin_Page(Homepage):
         # DB_User_Button = Admin_Window.Button(Frame_button_2, text='Gestion DB users', font=('Arial', 10), command=self.gestion_db_users)
         # DB_User_Button.pack(expand='yes', padx=40)
         # Admin_Window.mainloop()
-        
-        # Création du cadre principal
-        self.frame = tkinter.Frame(self.window, bg="#15c3f2")
-        self.frame.pack(padx=20, pady=20)
+
 
         # Bouton pour modifier la base de données "users"
-        users_button = tkinter.Button(self.frame, text="Modifier Users", command=self.gestion_db_users)
+        users_button = tkinter.Button(self.frame_right, text="Modifier Users", command=self.gestion_db_users)
         users_button.pack(pady=10)
 
         # Bouton pour modifier la base de données "book"
-        book_button = tkinter.Button(self.frame, text="Modifier Book", command=self.gestion_db_livres)
+        book_button = tkinter.Button(self.frame_right, text="Modifier Book", command=self.gestion_db_livres)
         book_button.pack(pady=10)
-
-    def run_display(self):
-        self.window.mainloop()
 
     def gestion_db_users(self):
         # Charger la base de données des utilisateurs depuis le fichier JSON
