@@ -5,12 +5,11 @@ from classes.wishlist import Wishlist
 
 class BookDetailsPage():
     
-    def __init__(self, window, book, callback, wishlist):
+    def __init__(self, window, book, callback):
         
         self.window = window
         self.book = book
         self.callback = callback
-        self.wishlist = wishlist
 
     def run_display_book(self):
         
@@ -68,7 +67,7 @@ class BookDetailsPage():
         cancel_reservation_button.pack()
         
         #Bouton d'ajout à la liste de souhaits
-        wishlist_button = tk.Button(self.frame_detail_right, text="Favoris", command=self.wishlist)
+        wishlist_button = tk.Button(self.frame_detail_right, text="Favoris", command=Wishlist.ajouter_livre)
         wishlist_button.pack()
         
     def return_to_homepage(self):

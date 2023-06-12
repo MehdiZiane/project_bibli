@@ -11,9 +11,11 @@ class Wishlist:
         """ Function enabling the user to add a book he would like to reserve or that he liked in a wishlist 
         """
         
+        print(books)
         self.books.append(books)
         print("Un livre a été ajouté dans la liste de souhaits.")
         self.sauvegarder_wishlist()
+    
 
     def retirer_livre(self, books):
         """ Function enabling thr user to remove a book from his wishlist 
