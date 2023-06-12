@@ -7,11 +7,43 @@ from classes.window import Window
 from classes.class_user import User
 from classes.book_details_page import BookDetailsPage
 
-class Admin_Page(Homepage):
+class user_page():
+    def __init__(self,window):
+        self.window = window
+        
+    def display_user_page(self):
+        self.frame_user_left = tkinter.Frame(self.window)
+        self.frame_user_left.pack(side='left', padx=20, pady=20)
+        
+        self.frame_user_right = tkinter.Frame(self.window)
+        self.frame_user_right.pack(side='right', padx=20, pady=20)
+        
+        self.frame_user_top = tkinter.Frame(self.window)
+        self.frame_user_top.pack(side='top', padx=20, pady=20)
+        
+        
+    
+
+
+class Admin_Page(user_page):
     def __init__(self):
         super().__init__()
         self.window.title("Admin_Page")
         self.window.configure(bg="#15c3f2")
+        
+        
+    def open_book_detail_page(self, book):
+        """ Function used to open a page giving details of a book 
+
+        Args:
+            book : class to homepage inherit
+        """
+        
+        self.frame_right.destroy()
+        self.frame_left.destroy()
+        self.frame_titre.destroy()
+        book_details_page = BookDetailsPage(self.window, book, self.run_display, self.logged_in_user)
+        book_details_page.run_display_book()
     
         
         # # Affichage de la page
