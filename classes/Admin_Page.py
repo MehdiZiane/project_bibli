@@ -1,5 +1,6 @@
 import tkinter
 import json
+from tkinter import messagebox
 from classes.homepage import Homepage
 from classes.class_book import Book
 from classes.user_db import UserDatabase
@@ -8,8 +9,9 @@ from classes.class_user import User
 from classes.book_details_page import BookDetailsPage
 
 class user_page():
-    def __init__(self,window):
+    def __init__(self,window,user):
         self.window = window
+        self.logged_in_user = user
         
     def display_user_page(self):
         self.frame_user_left = tkinter.Frame(self.window)
@@ -104,6 +106,59 @@ class user_page():
     def run_display(self):
         self.display_book()
         self.display_login_signup()
+        
+    def create_account_dialog(self):
+        """ Function that displays the dialog box where the user can enter him details to create a user account.
+        """
+        dialog = tkinter.Toplevel()
+        dialog.title('Create Account')
+
+        nom_label = tkinter.Label(dialog, text='Nom:')
+        nom_label.pack()
+        nom_entry = tkinter.Entry(dialog)
+        nom_entry.pack()
+
+        prenom_label = tkinter.Label(dialog, text='Prénom:')
+        prenom_label.pack()
+        prenom_entry = tkinter.Entry(dialog)
+        prenom_entry.pack()
+
+        email_label = tkinter.Label(dialog, text='Email:')
+        email_label.pack()
+        email_entry = tkinter.Entry(dialog)
+        email_entry.pack()
+
+        password_label = tkinter.Label(dialog, text='Password:')
+        password_label.pack()
+        password_entry = tkinter.Entry(dialog, show='*')
+        password_entry.pack()
+
+        create_button = tkinter.Button(dialog, text='Create Account', command=lambda: self.create_account(nom_entry.get(), prenom_entry.get(), email_entry.get(), password_entry.get(), dialog))
+        create_button.pack(pady=10)
+        
+    def check_login(self, email, password, dialog):
+        """ Function that checks the information the user has entered for their connection
+
+        Args:
+            email (char): the email address used by thr user
+            password (char): the password used by the user
+            dialog : the message displayed to the user
+        """
+        # Use the UserDatabase class to check authentication
+        user = self.user_db.authenticate_user(email, password)
+        if user:
+            messagebox.showinfo('Success', 'Login successful!')
+            self.logged_in_user = user
+            self.user_label.config(text=f"Welcome, {user['prenom']} {user['nom']}")  # Mettez à jour le label avec les informations de l'utilisateur
+            if user['admin'] == True:
+                print ("user['prenom'] is an admin")                #print(f"{user['prenom']} is an admin")
+                #Admin_Page()
+            else:
+                print(f"{user['prenom']} is not an admin")
+        else:
+            messagebox.showerror('Error', 'Invalid email or password.')
+        
+        dialog.destroy()
         
         
     
