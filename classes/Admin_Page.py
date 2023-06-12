@@ -12,6 +12,7 @@ class user_page():
     def __init__(self,window,user):
         self.window = window
         self.logged_in_user = user
+        self.user_db = UserDatabase()
         
     def display_user_page(self):
         self.frame_user_left = tkinter.Frame(self.window)
