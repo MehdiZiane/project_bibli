@@ -28,8 +28,8 @@ class user_page():
             book : class to homepage inherit
         """
         
-        self.frame_right.destroy()
-        self.frame_left.destroy()
+        self.frame_user_right.destroy()
+        self.frame_user_left.destroy()
         self.frame_titre.destroy()
         book_details_page = BookDetailsPage(self.window, book, self.run_display, self.logged_in_user)
         book_details_page.run_display_book()
@@ -66,15 +66,15 @@ class user_page():
         """ Function that displays the library login and registration buttons
         """
         
-        self.frame_right = tkinter.Frame(self.window)
-        self.frame_right.pack(side = 'right', padx=20, pady=20)
+        self.frame_user_right = tkinter.Frame(self.window)
+        self.frame_user_right.pack(side = 'right', padx=20, pady=20)
         
         # Button Log In
-        log_in_button = tkinter.Button(self.frame_right, text='Log In', command=self.login)
+        log_in_button = tkinter.Button(self.frame_user_right, text='Log In', command=self.login)
         log_in_button.pack(pady=10)
 
         # Button Sign Up
-        sign_up_button = tkinter.Button(self.frame_right, text='Sign Up', command=self.create_account_dialog)
+        sign_up_button = tkinter.Button(self.frame_user_right, text='Sign Up', command=self.create_account_dialog)
         sign_up_button.pack(pady=10)
         
     def display_book(self):
@@ -85,8 +85,8 @@ class user_page():
         titre.pack(pady=20)
 
         # Creating the left frame for displaying books
-        self.frame_left = tkinter.Frame(self.window)
-        self.frame_left.pack(side='left', padx=20, pady=20)
+        self.frame_user_left = tkinter.Frame(self.window)
+        self.frame_user_left.pack(side='left', padx=20, pady=20)
         
         # Loading books from a JSON file
         self.load_books()
@@ -94,7 +94,7 @@ class user_page():
         # Loop over books and display them
         for book in self.books:
             button_text= f"{book.title} - {book.author}"
-            button = tkinter.Button(self.frame_left, text=button_text, command=lambda book=book: self.open_book_detail_page(book))
+            button = tkinter.Button(self.frame_user_left, text=button_text, command=lambda book=book: self.open_book_detail_page(book))
             button.pack(pady=5)
         
         # Label which will receive information after the user logs in
@@ -140,11 +140,11 @@ class Admin_Page(user_page):
 
 
         # Bouton pour modifier la base de données "users"
-        users_button = tkinter.Button(self.frame_right, text="Modifier Users", command=self.gestion_db_users)
+        users_button = tkinter.Button(self.frame_user_right, text="Modifier Users", command=self.gestion_db_users)
         users_button.pack(pady=10)
 
         # Bouton pour modifier la base de données "book"
-        book_button = tkinter.Button(self.frame_right, text="Modifier Book", command=self.gestion_db_livres)
+        book_button = tkinter.Button(self.frame_user_right, text="Modifier Book", command=self.gestion_db_livres)
         book_button.pack(pady=10)
 
     def gestion_db_users(self):
