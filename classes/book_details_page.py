@@ -11,6 +11,7 @@ class BookDetailsPage():
         self.book = book
         self.callback = callback
         self.logged_in_user = None
+        self.wishlist = Wishlist()
 
     def run_display_book(self):
         
@@ -68,7 +69,7 @@ class BookDetailsPage():
         cancel_reservation_button.pack()
         
         #Bouton d'ajout à la liste de souhaits
-        wishlist_button = tk.Button(self.frame_detail_right, text="Favoris", command=Wishlist.ajouter_livre)
+        wishlist_button = tk.Button(self.frame_detail_right, text="Favoris", command=lambda: self.wishlist.ajouter_livre(self.book))
         wishlist_button.pack()
         
     def return_to_homepage(self):

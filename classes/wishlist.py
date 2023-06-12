@@ -7,12 +7,12 @@ class Wishlist:
     def __init__(self):
         self.books = []
 
-    def ajouter_livre(self, books):
+    def ajouter_livre(self, book):
         """ Function enabling the user to add a book he would like to reserve or that he liked in a wishlist 
         """
         
-        print(books)
-        self.books.append(books)
+        print(book)
+        self.books.append(book)
         print("Un livre a été ajouté dans la liste de souhaits.")
         self.sauvegarder_wishlist()
     
