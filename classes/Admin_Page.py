@@ -107,6 +107,20 @@ class user_page():
         self.display_book()
         self.display_login_signup()
         
+    def create_account(self, nom, prenom, email, password, dialog):
+        """ Function that allows the user to enter the data needed to create an account in the library.
+
+        Args:
+            nom (char): the name the user will choose
+            prenom (char): the first name that the user will choose
+            email (char): the email address that the user will choose
+            password (char): the password that the user will choose
+            dialog : the message displayed to the user
+        """
+        self.user_db.create_account(nom, prenom, email, password)
+        messagebox.showinfo('Success', 'Account created successfully!')
+        dialog.destroy()
+        
     def create_account_dialog(self):
         """ Function that displays the dialog box where the user can enter him details to create a user account.
         """
