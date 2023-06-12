@@ -33,7 +33,7 @@ class user_page():
         
         self.frame_user_right.destroy()
         self.frame_user_left.destroy()
-        self.frame_titre.destroy()
+        self.frame_user_top.destroy()
         book_details_page = BookDetailsPage(self.window, book, self.run_display, self.logged_in_user)
         book_details_page.run_display_book()
     
@@ -82,9 +82,9 @@ class user_page():
         
     def display_book(self):
 
-        self.frame_titre = tkinter.Frame(self.window)
-        self.frame_titre.pack(side='top', padx=20, pady=20)
-        titre = tkinter.Label(self.frame_titre, text="Bienvenue dans la bibliothèque", font=("Arial", 24))
+        self.frame_user_top = tkinter.Frame(self.window)
+        self.frame_user_top.pack(side='top', padx=20, pady=20)
+        titre = tkinter.Label(self.frame_user_top, text="Bienvenue dans la bibliothèque", font=("Arial", 24))
         titre.pack(pady=20)
 
         # Creating the left frame for displaying books
