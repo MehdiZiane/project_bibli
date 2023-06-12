@@ -58,7 +58,12 @@ class Homepage(Window):
         self.frame_right.destroy()
         self.frame_left.destroy()
         self.frame_titre.destroy()
-        book_details_page = BookDetailsPage(self.window, book, self.run_display, self.logged_in_user)
+        book_details_page = BookDetailsPage(self.window, book, self.run_display)
+        
+        # Vérifiez si un utilisateur est connecté et passez-le à la page des détails du livre
+        if self.logged_in_user:
+            self.book_details_page.set_logged_in_user(self.logged_in_user)
+        
         book_details_page.run_display_book()
     
     def display_login_signup(self):

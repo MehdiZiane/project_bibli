@@ -10,6 +10,7 @@ class BookDetailsPage():
         self.window = window
         self.book = book
         self.callback = callback
+        self.logged_in_user = None
 
     def run_display_book(self):
         
