@@ -216,6 +216,11 @@ class Admin_Page(user_page):
         # Bouton pour modifier la base de données "book"
         book_button = tkinter.Button(self.frame_user_right, text="Modifier Book", command=self.gestion_db_livres)
         book_button.pack(pady=10)
+        
+        #bouton pour reserver un livre
+        reserve_button = tkinter.Button(self.frame_user_right, text="Reserver un livre", command=self.reserver_livre)
+        reserve_button.pack(pady=10)
+        
 
     def gestion_db_users(self):
         # Charger la base de données des utilisateurs depuis le fichier JSON
