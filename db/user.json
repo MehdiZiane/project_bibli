@@ -55,6 +55,8 @@
         "mdp": "ze",
         "email": "ze",
         "admin": true,
-        "wishlist": []
+        "wishlist": [
+            "Harry Potter et le prisonnier d'Azkaban"
+        ]
     }
 ]

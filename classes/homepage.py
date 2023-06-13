@@ -82,6 +82,9 @@ class Homepage(Window):
         sign_up_button = tkinter.Button(self.frame_right, text='Sign Up', command=self.create_account_dialog)
         sign_up_button.pack(pady=10)
 
+        stop_button = tkinter.Button(self.frame_right, text='stop', command=self.stop_app)
+        stop_button.pack(pady=10)
+
     
     def load_books(self):
         try:
