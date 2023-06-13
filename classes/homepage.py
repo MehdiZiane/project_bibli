@@ -85,7 +85,7 @@ class Homepage(Window):
     
     def load_books(self):
         try:
-            with open("./db/book.json", "r") as file:
+            with open("./db/book.json", "r",encoding="utf-8") as file:
                 data = json.load(file)
                 self.books = [Book(item['id'], item['titre'], item['auteur'], item['annee_publication'], item['isbn'], item['categorie'], item['is_reserved'], item['reserved_by']) for item in data]
                 print(self.books)
