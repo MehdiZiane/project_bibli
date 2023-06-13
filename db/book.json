@@ -1,8 +1,8 @@
 [
     {
         "id": 1,
-        "titre": "Titre du livre 1",
-        "auteur": "Auteur 1",
+        "titre": "Harry Potter et le prisonnier d'Azkaban",
+        "auteur": "J.K Rowling",
         "annee_publication": 2021,
         "isbn": "9781234567890",
         "categorie": "Fiction",
@@ -11,8 +11,8 @@
     },
     {
         "id": 2,
-        "titre": "Titre du livre 2",
-        "auteur": "Auteur 2",
+        "titre": "Cendrillon est morte",
+        "auteur": "Kalynn Bayron",
         "annee_publication": 2022,
         "isbn": "9780987654321",
         "categorie": "Science-fiction",
@@ -21,8 +21,8 @@
     },
     {
         "id": 3,
-        "titre": "Titre du livre 3",
-        "auteur": "Auteur 3",
+        "titre": "Par-delà la magie",
+        "auteur": "Tom Felton",
         "annee_publication": 2020,
         "isbn": "9789876543210",
         "categorie": "Thriller",
