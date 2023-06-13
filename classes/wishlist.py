@@ -2,7 +2,7 @@ import json
 from tkinter import messagebox
 
 class Wishlist:
-    """ Class use for create a wishlist
+    """ Class use for create a wishlist for the user
     """
     
     def __init__(self):
@@ -10,6 +10,10 @@ class Wishlist:
 
     def ajouter_livre(self, book, logged_in_user):
         """ Function enabling the user to add a book he would like to reserve or that he liked in a wishlist 
+
+        Args:
+            book : the book that the user would like to add to his wishlist
+            logged_in_user : to check if the user is logged in
         """
         if logged_in_user == None:
             messagebox.showinfo('info', 'Veuillez vous connecter pour ajouter un livre à vos favoris')
@@ -22,6 +26,9 @@ class Wishlist:
 
     def retirer_livre(self, books):
         """ Function enabling thr user to remove a book from his wishlist 
+
+        Args:
+            books : the book that the user would like to remove from his wishlist
         """
         
         if books in self.books:
@@ -46,6 +53,11 @@ class Wishlist:
             print("La liste de souhaits est vide.")
             
     def sauvegarder_wishlist(self, logged_in_user):
+        """ Function for saving the books the user would like in a wishlist
+
+        Args:
+            logged_in_user : to search for logged-in user information 
+        """
         with open("./db/user.json", "r") as file:
             users=json.load(file)
             
