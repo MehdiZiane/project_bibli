@@ -44,11 +44,18 @@ class BookDatabase:
             'isbn': isbn,
             'categorie': category
         }
+        
         # Self.load_books_from_file()
         self.books.append(livre)
         self.save_books_to_file()
     
     def supprimer_livre(self, book_id):
+        """ Function for delete a book from the library
+
+        Args:
+            book_id : id of the book to be deleted
+        """
+        
         # Search for the book to be deleted
         index = None
         for i, livre in enumerate(self.books):
@@ -59,6 +66,7 @@ class BookDatabase:
         if index is not None:
             # Remove the book from the list
             del self.books[index]
+            
             # Save changes in the JSON file
             self.save_books_to_file()
             print(f"Livre avec ID {book_id} supprimé.")

@@ -6,7 +6,9 @@
         "mdp": "mdp",
         "email": "john.doe@example.com",
         "admin": false,
-        "wishlist": []
+        "wishlist": [
+            "Par-del\u00e0 la magie"
+        ]
     },
     {
         "id": 2,
