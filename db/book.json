@@ -5,7 +5,9 @@
         "auteur": "Auteur 1",
         "annee_publication": 2021,
         "isbn": "9781234567890",
-        "categorie": "Fiction"
+        "categorie": "Fiction",
+        "is_reserved" : false,
+        "reserved_by" : null
     },
     {
         "id": 2,
@@ -13,7 +15,9 @@
         "auteur": "Auteur 2",
         "annee_publication": 2022,
         "isbn": "9780987654321",
-        "categorie": "Science-fiction"
+        "categorie": "Science-fiction",
+        "is_reserved" : false,
+        "reserved_by" : null
     },
     {
         "id": 3,
@@ -21,6 +25,8 @@
         "auteur": "Auteur 3",
         "annee_publication": 2020,
         "isbn": "9789876543210",
-        "categorie": "Thriller"
+        "categorie": "Thriller",
+        "is_reserved" : false,
+        "reserved_by" : null
     }
 ]
