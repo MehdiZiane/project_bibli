@@ -4,21 +4,27 @@
         "nom": "Doe",
         "prenom": "John",
         "mdp": "mdp",
-        "email": "john.doe@example.com"
+        "email": "john.doe@example.com",
+        "admin": false,
+        "wishlist": []
     },
     {
         "id": 2,
         "nom": "Smith",
         "prenom": "Jane",
         "mdp": "mdp1",
-        "email": "jane.smith@example.com"
+        "email": "jane.smith@example.com",
+        "admin": false,
+        "wishlist": []
     },
     {
         "id": 3,
         "nom": "Johnson",
         "prenom": "David",
         "mdp": "ad",
-        "email": "david.johnson@example.com"
+        "email": "david.johnson@example.com",
+        "admin": false,
+        "wishlist": []
     },
     {
         "id": 4,
@@ -26,7 +32,10 @@
         "prenom": "Sarah",
         "mdp": "ad",
         "email": "sarah.johnson@example.com",
-        "admin":false
+        "admin": false,
+        "wishlist": [
+            "Harry Potter et le prisonnier d'Azkaban"
+        ]
     },
     {
         "id": 5,
@@ -34,7 +43,8 @@
         "prenom": "mehdi",
         "mdp": "1234",
         "email": "me",
-        "admin": false
+        "admin": false,
+        "wishlist": []
     },
     {
         "id": 6,
@@ -42,6 +52,7 @@
         "prenom": "ze",
         "mdp": "ze",
         "email": "ze",
-        "admin": true
+        "admin": true,
+        "wishlist": []
     }
 ]

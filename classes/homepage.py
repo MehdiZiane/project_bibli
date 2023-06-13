@@ -61,7 +61,7 @@ class Homepage(Window):
         self.frame_titre.destroy()
         self.book_details_page = BookDetailsPage(self.window, book, self.run_display)
         
-        # Vérifiez si un utilisateur est connecté et passez-le à la page des détails du livre
+        # Check if a user is logged in and pass the argument to the book detail page
         if self.logged_in_user:
             self.book_details_page.set_logged_in_user(self.logged_in_user)
         
@@ -162,6 +162,7 @@ class Homepage(Window):
             password (char): the password used by the user
             dialog : the message displayed to the user
         """
+        
         # Use the UserDatabase class to check authentication
         user = self.user_db.authenticate_user(email, password)
         if user:

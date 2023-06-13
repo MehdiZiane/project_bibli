@@ -15,9 +15,9 @@ class Wishlist:
             messagebox.showinfo('info', 'Veuillez vous connecter pour ajouter un livre à vos favoris')
         else:
             print(book)
-            self.books.append(book)
-            print("Un livre a été ajouté dans la liste de souhaits.")
-            self.sauvegarder_wishlist()
+            logged_in_user['wishlist'].append(book.title)
+            messagebox.showinfo('info', 'Un livre à été ajouté à la liste de souhaits')
+            self.sauvegarder_wishlist(logged_in_user)
     
 
     def retirer_livre(self, books):
@@ -45,6 +45,14 @@ class Wishlist:
         else:
             print("La liste de souhaits est vide.")
             
-    def sauvegarder_wishlist(self):
-        with open("user.json", "w") as file:
-            json.dump(self.books, file)
+    def sauvegarder_wishlist(self, logged_in_user):
+        with open("./db/user.json", "r") as file:
+            users=json.load(file)
+            
+        for user_data in users:
+            if user_data["id"] == logged_in_user["id"]:
+                user_data["wishlist"] = logged_in_user["wishlist"]
+                break
+        
+        with open("./db/user.json", "w") as file:
+            json.dump(users, file, indent=4)

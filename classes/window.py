@@ -1,6 +1,8 @@
 import tkinter
 
 class Window():
+    """ Class used to generate windows in the application's graphical interface
+    """
     def __init__(self):
         self.window = tkinter.Tk()
         self.window.title('bibliotheque des 4 rives')
