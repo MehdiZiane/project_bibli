@@ -1,4 +1,5 @@
 import json
+from tkinter import messagebox
 
 class Wishlist:
     """ Class use for create a wishlist
@@ -7,14 +8,16 @@ class Wishlist:
     def __init__(self):
         self.books = []
 
-    def ajouter_livre(self, book):
+    def ajouter_livre(self, book, logged_in_user):
         """ Function enabling the user to add a book he would like to reserve or that he liked in a wishlist 
         """
-        
-        print(book)
-        self.books.append(book)
-        print("Un livre a été ajouté dans la liste de souhaits.")
-        self.sauvegarder_wishlist()
+        if logged_in_user == None:
+            messagebox.showinfo('info', 'Veuillez vous connecter pour ajouter un livre à vos favoris')
+        else:
+            print(book)
+            self.books.append(book)
+            print("Un livre a été ajouté dans la liste de souhaits.")
+            self.sauvegarder_wishlist()
     
 
     def retirer_livre(self, books):
