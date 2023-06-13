@@ -70,10 +70,10 @@ class BookDetailsPage():
         if self.logged_in_user['id'] == self.book.reserved_by:
             if self.book.is_reserved:
                 self.reserve_button.config(state=tk.DISABLED)  # Désactiver le bouton de réservation
-                self.cancel_button.config(state=tk.NORMAL)  # Activer le bouton d'annulation de réservation
+                self.cancel_reservation_button.config(state=tk.NORMAL)  # Activer le bouton d'annulation de réservation
             else:
                 self.reserve_button.config(state=tk.NORMAL)  # Activer le bouton de réservation
-                self.cancel_button.config(state=tk.DISABLED)  # Désactiver le bouton d'annulation de réservation
+                self.cancel_reservation_button.config(state=tk.DISABLED)  # Désactiver le bouton d'annulation de réservation
 
     def update_database(self):
         data = self.load_database()
@@ -89,23 +89,23 @@ class BookDetailsPage():
         
         
         # Titre du livre
-        title_label = tk.Label(self.frame_detail_left, text="Titre: " + self.book[0].title)
+        title_label = tk.Label(self.frame_detail_left, text="Titre: " + self.book.title)
         title_label.pack()
 
         # Auteur du livre
-        author_label = tk.Label(self.frame_detail_left, text="Auteur: " + self.book[0].author)
+        author_label = tk.Label(self.frame_detail_left, text="Auteur: " + self.book.author)
         author_label.pack()
 
         # Année de publication du livre
-        publication_year_label = tk.Label(self.frame_detail_left, text="Année de publication: " + str(self.book[0].publication_year))
+        publication_year_label = tk.Label(self.frame_detail_left, text="Année de publication: " + str(self.book.publication_year))
         publication_year_label.pack()
 
         # ISBN du livre
-        isbn_label = tk.Label(self.frame_detail_left, text="ISBN: " + self.book[0].isbn)
+        isbn_label = tk.Label(self.frame_detail_left, text="ISBN: " + self.book.isbn)
         isbn_label.pack()
 
         # Catégorie du livre
-        category_label = tk.Label(self.frame_detail_left, text="Catégorie: " + self.book[0].category)
+        category_label = tk.Label(self.frame_detail_left, text="Catégorie: " + self.book.category)
         category_label.pack()
 
         # Bouton de retour
@@ -113,12 +113,12 @@ class BookDetailsPage():
         back_button.pack()
         
         #Bouton pour réserver
-        reserve_button = tk.Button(self.frame_detail_right, text="reserve", command=self.reserve)
-        reserve_button.pack()
+        self.reserve_button = tk.Button(self.frame_detail_right, text="reserve", command=self.reserve)
+        self.reserve_button.pack()
         
         #Bouton pour annuler une réservation
-        cancel_reservation_button = tk.Button(self.frame_detail_right, text="Cancel reservation", command=self.cancel_reserve, state=tk.DISABLED)
-        cancel_reservation_button.pack()
+        self.cancel_reservation_button = tk.Button(self.frame_detail_right, text="Cancel reservation", command=self.cancel_reserve, state=tk.DISABLED)
+        self.cancel_reservation_button.pack()
         
         #Bouton d'ajout à la liste de souhaits
         wishlist_button = tk.Button(self.frame_detail_right, text="Favoris", command=lambda: self.wishlist.ajouter_livre(self.book))

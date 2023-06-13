@@ -17,6 +17,7 @@ class Homepage(Window):
         super().__init__()
         self.books = []
         self.user_db = UserDatabase()
+        self.book_details_page = None
         self.logged_in_user = None
         self.run_display()
     
@@ -58,13 +59,13 @@ class Homepage(Window):
         self.frame_right.destroy()
         self.frame_left.destroy()
         self.frame_titre.destroy()
-        book_details_page = BookDetailsPage(self.window, book, self.run_display)
+        self.book_details_page = BookDetailsPage(self.window, book, self.run_display)
         
         # Vérifiez si un utilisateur est connecté et passez-le à la page des détails du livre
         if self.logged_in_user:
             self.book_details_page.set_logged_in_user(self.logged_in_user)
         
-        book_details_page.run_display_book()
+        self.book_details_page.run_display_book()
     
     def display_login_signup(self):
         """ Function that displays the library login and registration buttons

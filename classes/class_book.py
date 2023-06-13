@@ -9,7 +9,7 @@ class Book:
         self.isbn = isbn
         self.category = category
         self.is_reserved = is_reserved
-        self.reserve_by = reserved_by
+        self.reserved_by = reserved_by
     
     def reserve_book(self):
         self.is_reserved = True
