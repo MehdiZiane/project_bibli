@@ -116,14 +116,16 @@ class BookDetailsPage():
         self.reserve_button = tk.Button(self.frame_detail_right, text="reserve", command=self.reserve)
         self.reserve_button.pack()
         
-        #Bouton pour annuler une réservation
-        self.cancel_reservation_button = tk.Button(self.frame_detail_right, text="Cancel reservation", command=self.cancel_reserve, state=tk.DISABLED)
-        self.cancel_reservation_button.pack()
-        
-        #Bouton d'ajout à la liste de souhaits
+       #Bouton d'ajout à la liste de souhaits
         wishlist_button = tk.Button(self.frame_detail_right, text="Favoris", command=lambda: self.wishlist.ajouter_livre(self.book))
         wishlist_button.pack()
         
+         #Bouton pour annuler une réservation
+        self.cancel_reservation_button = tk.Button(self.frame_detail_right, text="Cancel reservation", command=self.cancel_reserve, state=tk.DISABLED)
+        self.cancel_reservation_button.pack()
+
+         # Mettre à jour l'état des boutons de réservation et d'annulation
+        self.update_reserve_cancel_buttons()
     def return_to_homepage(self):
         self.frame_detail_left.destroy()  # Fermer la page des détails du livre
         self.frame_detail_right.destroy()

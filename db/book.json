@@ -6,8 +6,8 @@
         "annee_publication": 2021,
         "isbn": "9781234567890",
         "categorie": "Fiction",
-        "is_reserved": true,
-        "reserved_by": 6
+        "is_reserved": false,
+        "reserved_by": 5
     },
     {
         "id": 2,
