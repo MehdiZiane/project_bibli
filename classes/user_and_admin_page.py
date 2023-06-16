@@ -35,7 +35,12 @@ class UserPage():
         self.frame_user_right.destroy()
         self.frame_user_left.destroy()
         self.frame_user_top.destroy()
-        book_details_page = BookDetailsPage(self.window, book, self.run_display, self.logged_in_user)
+        book_details_page = BookDetailsPage(self.window, book, self.display_user_page)
+
+         # Vérifiez si un utilisateur est connecté et passez-le à la page des détails du livre
+        if self.logged_in_user:
+            book_details_page.set_logged_in_user(self.logged_in_user)
+
         book_details_page.run_display_book()
     
     def login(self):
@@ -176,29 +181,6 @@ class AdminPage(UserPage):
         super().__init__( window, user)
         self.window.title("Admin_Page")
         self.window.configure(bg="#15c3f2")
-        
-        
-   
-    
-        
-        # # Affichage de la page
-        # Admin_Window.title('Bibliothèque des 4 rives - Admin Page')
-        # Admin_Window.geometry('1280x720')
-        # Admin_Window.minsize(720, 480)
-        # Admin_Window.config(background='#15c3f2')
-        # label_title = Admin_Window.Label(Admin_Window, text='Bienvenue sur la page Admin', font=('Arial', 24), bg='#15c3f2', fg='red')
-        # label_title.pack(expand='yes')
-        # # création du bouton "Gestion DB livres"
-        # Frame_button_1 = Admin_Window.Frame(Admin_Window, bg='#15c3f2')
-        # Frame_button_1.pack(expand='yes', side = 'left', padx=10, pady=10)
-        # DB_Book_Button = Admin_Window.Button(Frame_button_1, text='Gestion DB livres', font=('Arial', 10), command=self.gestion_db_livres)
-        # DB_Book_Button.pack(expand='yes', padx=40)
-        # # création du bouton "Gestion DB users"
-        # Frame_button_2 = Admin_Window.Frame(Admin_Window, bg='#15c3f2')
-        # Frame_button_2.pack(expand='yes', side = 'right', padx=10, pady=10)
-        # DB_User_Button = Admin_Window.Button(Frame_button_2, text='Gestion DB users', font=('Arial', 10), command=self.gestion_db_users)
-        # DB_User_Button.pack(expand='yes', padx=40)
-        # Admin_Window.mainloop()
 
 
         # Bouton pour modifier la base de données "users"

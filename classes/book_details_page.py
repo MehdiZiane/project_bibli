@@ -133,6 +133,7 @@ class BookDetailsPage():
     def return_to_homepage(self):
         self.frame_detail_left.destroy()  # Fermer la page des détails du livre
         self.frame_detail_right.destroy()
+        self.frame_detail_top.destroy()
         self.callback()  # Appeler la fonction de retour fournie par la classe parent
         
             
