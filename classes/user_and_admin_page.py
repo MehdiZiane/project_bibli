@@ -6,107 +6,131 @@ from classes.user_db import UserDatabase
 from classes.class_user import User
 from classes.book_details_page import BookDetailsPage
 
-class UserPage():
+
+class UserPage:
     def __init__(self, window, user):
         self.window = window
         self.logged_in_user = user
         self.user_db = UserDatabase()
-        
+
     def display_user_page(self):
         self.frame_user_left = tkinter.Frame(self.window)
-        self.frame_user_left.pack(side='left', padx=20, pady=20)
-        
+        self.frame_user_left.pack(side="left", padx=20, pady=20)
+
         self.frame_user_right = tkinter.Frame(self.window)
-        self.frame_user_right.pack(side='right', padx=20, pady=20)
-        
+        self.frame_user_right.pack(side="right", padx=20, pady=20)
+
         self.frame_user_top = tkinter.Frame(self.window)
-        self.frame_user_top.pack(side='top', padx=20, pady=20)
+        self.frame_user_top.pack(side="top", padx=20, pady=20)
 
         self.display_login_signup()
         self.display_book()
-        
+
     def open_book_detail_page(self, book):
-        """ Function used to open a page giving details of a book 
+        """Function used to open a page giving details of a book
 
         Args:
             book : class to homepage inherit
         """
-        
+
         self.frame_user_right.destroy()
         self.frame_user_left.destroy()
         self.frame_user_top.destroy()
         book_details_page = BookDetailsPage(self.window, book, self.display_user_page)
 
-         # Vérifiez si un utilisateur est connecté et passez-le à la page des détails du livre
+        # Vérifiez si un utilisateur est connecté et passez-le à la page des détails du livre
         if self.logged_in_user:
             book_details_page.set_logged_in_user(self.logged_in_user)
 
         book_details_page.run_display_book()
-    
-    def login(self):
-        """ Function enablling the user to connect to his user account in the library
-        """
-        dialog = tkinter.Toplevel()
-        dialog.title('Log In')
 
-        email_label = tkinter.Label(dialog, text='Email:')
+    def login(self):
+        """Function enablling the user to connect to his user account in the library"""
+        dialog = tkinter.Toplevel()
+        dialog.title("Log In")
+
+        email_label = tkinter.Label(dialog, text="Email:")
         email_label.pack()
         email_entry = tkinter.Entry(dialog)
         email_entry.pack()
 
-        password_label = tkinter.Label(dialog, text='Password:')
+        password_label = tkinter.Label(dialog, text="Password:")
         password_label.pack()
-        password_entry = tkinter.Entry(dialog, show='*')
+        password_entry = tkinter.Entry(dialog, show="*")
         password_entry.pack()
 
-        login_button = tkinter.Button(dialog, text='Log In', command=lambda: self.check_login(email_entry.get(), password_entry.get(), dialog))
+        login_button = tkinter.Button(
+            dialog,
+            text="Log In",
+            command=lambda: self.check_login(
+                email_entry.get(), password_entry.get(), dialog
+            ),
+        )
         login_button.pack(pady=10)
-        
+
     def load_books(self):
         try:
             with open("./db/book.json", "r") as file:
                 data = json.load(file)
-                self.books = [Book(item['id'], item['titre'], item['auteur'], item['annee_publication'], item['isbn'], item['categorie']) for item in data]
+                self.books = [
+                    Book(
+                        item["id"],
+                        item["titre"],
+                        item["auteur"],
+                        item["annee_publication"],
+                        item["isbn"],
+                        item["categorie"],
+                    )
+                    for item in data
+                ]
                 print(self.books)
         except FileNotFoundError:
             self.books = []
-            
+
     def display_login_signup(self):
-        """ Function that displays the library login and registration buttons
-        """
-        
+        """Function that displays the library login and registration buttons"""
+
         # Button Log In
-        log_in_button = tkinter.Button(self.frame_user_right, text='Log In', command=self.login)
+        log_in_button = tkinter.Button(
+            self.frame_user_right, text="Log In", command=self.login
+        )
         log_in_button.pack(pady=10)
 
         # Button Sign Up
-        sign_up_button = tkinter.Button(self.frame_user_right, text='Sign Up', command=self.create_account_dialog)
+        sign_up_button = tkinter.Button(
+            self.frame_user_right, text="Sign Up", command=self.create_account_dialog
+        )
         sign_up_button.pack(pady=10)
-        
-    def display_book(self):
 
-        titre = tkinter.Label(self.frame_user_top, text="Bienvenue membre", font=("Arial", 24))
+    def display_book(self):
+        titre = tkinter.Label(
+            self.frame_user_top, text="Bienvenue membre", font=("Arial", 24)
+        )
         titre.pack(pady=20)
-        
+
         # Loading books from a JSON file
         self.load_books()
 
         # Loop over books and display them
         for book in self.books:
-            button_text= f"{book.title} - {book.author}"
-            button = tkinter.Button(self.frame_user_left, text=button_text, command=lambda book=book: self.open_book_detail_page(book))
+            button_text = f"{book.title} - {book.author}"
+            button = tkinter.Button(
+                self.frame_user_left,
+                text=button_text,
+                command=lambda book=book: self.open_book_detail_page(book),
+            )
             button.pack(pady=5)
-        
+
         # Label which will receive information after the user logs in
-        self.user_label = tkinter.Label(self.window, text='', font=("Arial", 16))
+        self.user_label = tkinter.Label(self.window, text="", font=("Arial", 16))
         self.user_label.pack(pady=10)
-        
+
     def run_display(self):
         self.display_book()
         self.display_login_signup()
-        
+
     def create_account(self, nom, prenom, email, password, dialog):
-        """ Function that allows the user to enter the data needed to create an account in the library.
+        """Function that allows the user to enter the data needed to create an account in the library.
 
         Args:
             nom (char): the name the user will choose
@@ -116,40 +140,49 @@ class UserPage():
             dialog : the message displayed to the user
         """
         self.user_db.create_account(nom, prenom, email, password)
-        messagebox.showinfo('Success', 'Account created successfully!')
+        messagebox.showinfo("Success", "Account created successfully!")
         dialog.destroy()
-        
-    def create_account_dialog(self):
-        """ Function that displays the dialog box where the user can enter him details to create a user account.
-        """
-        dialog = tkinter.Toplevel()
-        dialog.title('Create Account')
 
-        nom_label = tkinter.Label(dialog, text='Nom:')
+    def create_account_dialog(self):
+        """Function that displays the dialog box where the user can enter him details to create a user account."""
+        dialog = tkinter.Toplevel()
+        dialog.title("Create Account")
+
+        nom_label = tkinter.Label(dialog, text="Nom:")
         nom_label.pack()
         nom_entry = tkinter.Entry(dialog)
         nom_entry.pack()
 
-        prenom_label = tkinter.Label(dialog, text='Prénom:')
+        prenom_label = tkinter.Label(dialog, text="Prénom:")
         prenom_label.pack()
         prenom_entry = tkinter.Entry(dialog)
         prenom_entry.pack()
 
-        email_label = tkinter.Label(dialog, text='Email:')
+        email_label = tkinter.Label(dialog, text="Email:")
         email_label.pack()
         email_entry = tkinter.Entry(dialog)
         email_entry.pack()
 
-        password_label = tkinter.Label(dialog, text='Password:')
+        password_label = tkinter.Label(dialog, text="Password:")
         password_label.pack()
-        password_entry = tkinter.Entry(dialog, show='*')
+        password_entry = tkinter.Entry(dialog, show="*")
         password_entry.pack()
 
-        create_button = tkinter.Button(dialog, text='Create Account', command=lambda: self.create_account(nom_entry.get(), prenom_entry.get(), email_entry.get(), password_entry.get(), dialog))
+        create_button = tkinter.Button(
+            dialog,
+            text="Create Account",
+            command=lambda: self.create_account(
+                nom_entry.get(),
+                prenom_entry.get(),
+                email_entry.get(),
+                password_entry.get(),
+                dialog,
+            ),
+        )
         create_button.pack(pady=10)
-        
+
     def check_login(self, email, password, dialog):
-        """ Function that checks the information the user has entered for their connection
+        """Function that checks the information the user has entered for their connection
 
         Args:
             email (char): the email address used by thr user
@@ -159,46 +192,49 @@ class UserPage():
         # Use the UserDatabase class to check authentication
         user = self.user_db.authenticate_user(email, password)
         if user:
-            messagebox.showinfo('Success', 'Login successful!')
+            messagebox.showinfo("Success", "Login successful!")
             self.logged_in_user = user
-            #self.user_label.config(text=f"Welcome, {user['prenom']} {user['nom']}")  # Mettez à jour le label avec les informations de l'utilisateur
-            if user['admin'] == True:
-                print ("user['prenom'] is an admin")                #print(f"{user['prenom']} is an admin")
-                #Admin_Page()
+            # self.user_label.config(text=f"Welcome, {user['prenom']} {user['nom']}")  # Mettez à jour le label avec les informations de l'utilisateur
+            if user["admin"] == True:
+                print(
+                    "user['prenom'] is an admin"
+                )  # print(f"{user['prenom']} is an admin")
+                # Admin_Page()
             else:
                 print(f"{user['prenom']} is not an admin")
         else:
-            messagebox.showerror('Error', 'Invalid email or password.')
-        
+            messagebox.showerror("Error", "Invalid email or password.")
+
         dialog.destroy()
-        
-        
-    
 
 
 class AdminPage(UserPage):
     def __init__(self, window, user):
-        super().__init__( window, user)
+        super().__init__(window, user)
         self.window.title("Admin_Page")
         self.window.configure(bg="#15c3f2")
 
-
         # Bouton pour modifier la base de données "users"
-        users_button = tkinter.Button(self.frame_user_right, text="Modifier Users", command=self.gestion_db_users)
+        users_button = tkinter.Button(
+            self.frame_user_right, text="Modifier Users", command=self.gestion_db_users
+        )
         users_button.pack(pady=10)
 
         # Bouton pour modifier la base de données "book"
-        book_button = tkinter.Button(self.frame_user_right, text="Modifier Book", command=self.gestion_db_livres)
+        book_button = tkinter.Button(
+            self.frame_user_right, text="Modifier Book", command=self.gestion_db_livres
+        )
         book_button.pack(pady=10)
-        
-        #bouton pour reserver un livre
-        reserve_button = tkinter.Button(self.frame_user_right, text="Reserver un livre", command=self.reserver_livre)
+
+        # bouton pour reserver un livre
+        reserve_button = tkinter.Button(
+            self.frame_user_right, text="Reserver un livre", command=self.reserver_livre
+        )
         reserve_button.pack(pady=10)
-        
 
     def gestion_db_users(self):
         # Charger la base de données des utilisateurs depuis le fichier JSON
-        with open('user.json', 'r+') as f:
+        with open("user.json", "r+") as f:
             users_data = json.load(f)
 
         # Faites quelque chose avec la base de données des utilisateurs, par exemple afficher les données
@@ -207,7 +243,7 @@ class AdminPage(UserPage):
 
     def gestion_db_livres(self):
         # Charger la base de données des livres depuis le fichier JSON
-        with open('book.json', 'r+') as f:
+        with open("book.json", "r+") as f:
             books_data = json.load(f)
 
         # Faites quelque chose avec la base de données des livres, par exemple afficher les données

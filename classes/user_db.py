@@ -1,12 +1,13 @@
 import json
 from classes.class_user import User
 
+
 class UserDatabase:
     def __init__(self):
         self.users = self.load_users_from_file()
 
     def load_users_from_file(self):
-        """ Function for loading user from the JSON file
+        """Function for loading user from the JSON file
 
         Returns:
             Enable users loaded in the file to be returned, or enable other parts of the program to have access to this file.
@@ -19,13 +20,12 @@ class UserDatabase:
             return []
 
     def save_users_to_file(self):
-        """ Function for saving users in the JSON file
-        """
-        with open("./db/user.json","w") as file:
+        """Function for saving users in the JSON file"""
+        with open("./db/user.json", "w") as file:
             json.dump(self.users, file, indent=4)
 
     def create_account(self, nom, prenom, email, password):
-        """ Fuction enabling the user to create an account in the library
+        """Fuction enabling the user to create an account in the library
 
         Args:
             nom (char): name chosen and entered by the user
@@ -33,35 +33,34 @@ class UserDatabase:
             email (char): email address chosen and entered by the user
             password (char): password chosen and entered by the user
         """
-        
+
         # Create a single id for the new user
         user_id = len(self.users) + 1
 
         # Adding a new user to the database
         dude = {
-            'id': user_id,
-            'nom': nom,
-            'prenom': prenom,
-            'mdp': password,
-            'email': email,
-            'admin': False, 
-            'wishlist':[]
+            "id": user_id,
+            "nom": nom,
+            "prenom": prenom,
+            "mdp": password,
+            "email": email,
+            "admin": False,
+            "wishlist": [],
         }
         self.users.append(dude)
         self.save_users_to_file()
 
-    
     def remove_user(self, user_id):
-        """ Function for deleting a user account from the library
+        """Function for deleting a user account from the library
 
         Args:
             user_id : the user id to be deleted from the list of users
         """
-        
+
         # Search for the user to be deleted
         index = None
         for i, dude in enumerate(self.users):
-            if dude['id'] == user_id:
+            if dude["id"] == user_id:
                 index = i
                 break
 
@@ -75,7 +74,7 @@ class UserDatabase:
             print(f"user avec ID {user_id} introuvable.")
 
     def authenticate_user(self, email, password):
-        """ Function used to check the information entered by the user at the time of connection
+        """Function used to check the information entered by the user at the time of connection
 
         Args:
             email (char): the email address register by the user
@@ -85,6 +84,6 @@ class UserDatabase:
             _type_: _description_
         """
         for user in self.users:
-            if user['email'] == email and user['mdp'] == password:
+            if user["email"] == email and user["mdp"] == password:
                 return user
         return None

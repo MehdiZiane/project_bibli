@@ -1,6 +1,6 @@
 class User:
-    """ Class use to manage users registered in the database
-    """
+    """Class use to manage users registered in the database"""
+
     def __init__(self, id, nom, prenom, mdp, email, isAdmin=False):
         self.id = id
         self.nom = nom
