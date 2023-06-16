@@ -22,6 +22,9 @@ class BookDetailsPage():
         self.frame_detail_right = tk.Frame(self.window)
         self.frame_detail_right.pack(side='right', padx=20, pady=20)
 
+        self.frame_detail_top = tk.Frame(self.window)
+        self.frame_detail_top.pack(side='top')
+
         print(self.book.is_reserved)
         print(self.book.reserved_by)
 
@@ -89,7 +92,7 @@ class BookDetailsPage():
         
         
         # Titre du livre
-        title_label = tk.Label(self.frame_detail_left, text="Titre: " + self.book.title)
+        title_label = tk.Label(self.frame_detail_top, text=self.book.title)
         title_label.pack()
 
         # Auteur du livre

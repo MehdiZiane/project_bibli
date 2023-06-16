@@ -6,9 +6,7 @@
         "mdp": "mdp",
         "email": "john.doe@example.com",
         "admin": false,
-        "wishlist": [
-            "Par-del\u00e0 la magie"
-        ]
+        "wishlist": []
     },
     {
         "id": 2,
@@ -35,9 +33,7 @@
         "mdp": "ad",
         "email": "sarah.johnson@example.com",
         "admin": false,
-        "wishlist": [
-            "Harry Potter et le prisonnier d'Azkaban"
-        ]
+        "wishlist": []
     },
     {
         "id": 5,
@@ -55,8 +51,6 @@
         "mdp": "ze",
         "email": "ze",
         "admin": true,
-        "wishlist": [
-            "Harry Potter et le prisonnier d'Azkaban"
-        ]
+        "wishlist": []
     }
 ]
