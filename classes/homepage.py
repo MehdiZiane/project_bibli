@@ -6,6 +6,8 @@ from classes.user_db import UserDatabase
 from classes.class_user import User
 from classes.window import Window
 from classes.book_details_page import BookDetailsPage
+from classes.user_and_admin_page import UserPage
+from classes.user_and_admin_page import AdminPage
 
 class Homepage(Window):
     """ Class use for display the homepage of your library app
@@ -169,14 +171,24 @@ class Homepage(Window):
         # Use the UserDatabase class to check authentication
         user = self.user_db.authenticate_user(email, password)
         if user:
-            messagebox.showinfo('Success', 'Login successful!')
-            self.logged_in_user = user
-            self.user_label.config(text=f"Welcome, {user['prenom']} {user['nom']}")  # Mettez à jour le label avec les informations de l'utilisateur
-            if user['admin'] == True:
-                print ("user['prenom'] is an admin")                #print(f"{user['prenom']} is an admin")
-                #Admin_Page()
+            if not user['admin']:
+                print (user['admin'])
+                messagebox.showinfo('Success', 'Login successful!')
+                #self.user_label.config(text=f"Welcome, {user['prenom']} {user['nom']}")  # Mettez à jour le label avec les informations de l'utilisateur
+                self.logged_in_user = user  # Mettez à jour la variable logged_in_user dans BookDetailsPage
+                self.frame_right.destroy()
+                self.frame_left.destroy()
+                self.frame_titre.destroy()
+                UserPage(self.window, self.logged_in_user).display_user_page()
+
             else:
-                print(f"{user['prenom']} is not an admin")
+                messagebox.showinfo('succes', 'welcome admin')
+                self.logged_in_user = user
+                self.frame_right.destroy()
+                self.frame_left.destroy()
+                self.frame_titre.destroy()
+                AdminPage().display_user_page()
+
         else:
             messagebox.showerror('Error', 'Invalid email or password.')
         

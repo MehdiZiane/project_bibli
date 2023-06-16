@@ -1,15 +1,13 @@
 import tkinter
 import json
 from tkinter import messagebox
-from classes.homepage import Homepage
 from classes.class_book import Book
 from classes.user_db import UserDatabase
-from classes.window import Window
 from classes.class_user import User
 from classes.book_details_page import BookDetailsPage
 
-class user_page():
-    def __init__(self,window,user):
+class UserPage():
+    def __init__(self, window, user):
         self.window = window
         self.logged_in_user = user
         self.user_db = UserDatabase()
@@ -23,6 +21,9 @@ class user_page():
         
         self.frame_user_top = tkinter.Frame(self.window)
         self.frame_user_top.pack(side='top', padx=20, pady=20)
+
+        self.display_login_signup()
+        self.display_book()
         
     def open_book_detail_page(self, book):
         """ Function used to open a page giving details of a book 
@@ -69,9 +70,6 @@ class user_page():
         """ Function that displays the library login and registration buttons
         """
         
-        self.frame_user_right = tkinter.Frame(self.window)
-        self.frame_user_right.pack(side = 'right', padx=20, pady=20)
-        
         # Button Log In
         log_in_button = tkinter.Button(self.frame_user_right, text='Log In', command=self.login)
         log_in_button.pack(pady=10)
@@ -82,14 +80,8 @@ class user_page():
         
     def display_book(self):
 
-        self.frame_user_top = tkinter.Frame(self.window)
-        self.frame_user_top.pack(side='top', padx=20, pady=20)
-        titre = tkinter.Label(self.frame_user_top, text="Bienvenue dans la bibliothèque", font=("Arial", 24))
+        titre = tkinter.Label(self.frame_user_top, text="Bienvenue membre", font=("Arial", 24))
         titre.pack(pady=20)
-
-        # Creating the left frame for displaying books
-        self.frame_user_left = tkinter.Frame(self.window)
-        self.frame_user_left.pack(side='left', padx=20, pady=20)
         
         # Loading books from a JSON file
         self.load_books()
@@ -164,7 +156,7 @@ class user_page():
         if user:
             messagebox.showinfo('Success', 'Login successful!')
             self.logged_in_user = user
-            self.user_label.config(text=f"Welcome, {user['prenom']} {user['nom']}")  # Mettez à jour le label avec les informations de l'utilisateur
+            #self.user_label.config(text=f"Welcome, {user['prenom']} {user['nom']}")  # Mettez à jour le label avec les informations de l'utilisateur
             if user['admin'] == True:
                 print ("user['prenom'] is an admin")                #print(f"{user['prenom']} is an admin")
                 #Admin_Page()
@@ -179,9 +171,9 @@ class user_page():
     
 
 
-class Admin_Page(user_page):
-    def __init__(self):
-        super().__init__()
+class AdminPage(UserPage):
+    def __init__(self, window, user):
+        super().__init__( window, user)
         self.window.title("Admin_Page")
         self.window.configure(bg="#15c3f2")
         

@@ -44,7 +44,8 @@ class UserDatabase:
             'prenom': prenom,
             'mdp': password,
             'email': email,
-            'admin': False
+            'admin': False, 
+            'wishlist':[]
         }
         self.users.append(dude)
         self.save_users_to_file()
