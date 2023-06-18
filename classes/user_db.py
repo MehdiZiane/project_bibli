@@ -24,7 +24,7 @@ class UserDatabase:
         with open("./db/user.json", "w") as file:
             json.dump(self.users, file, indent=4)
 
-    def create_account(self, nom, prenom, email, password):
+    def create_account(self, name, surname, email, password):
         """Fuction enabling the user to create an account in the library
 
         Args:
@@ -40,9 +40,9 @@ class UserDatabase:
         # Adding a new user to the database
         dude = {
             "id": user_id,
-            "nom": nom,
-            "prenom": prenom,
-            "mdp": password,
+            "name": name,
+            "surname": surname,
+            "password": password,
             "email": email,
             "admin": False,
             "wishlist": [],
@@ -69,9 +69,9 @@ class UserDatabase:
             del self.users[index]
             # Saving changes to the JSON file
             self.save_users_to_file()
-            print(f"user avec ID {user_id} supprimé.")
+            print(f"user ID {user_id} delete.")
         else:
-            print(f"user avec ID {user_id} introuvable.")
+            print(f"user ID {user_id} nowhere.")
 
     def authenticate_user(self, email, password):
         """Function used to check the information entered by the user at the time of connection
@@ -83,7 +83,7 @@ class UserDatabase:
         Returns:
             _type_: _description_
         """
-        for user in self.users:
-            if user["email"] == email and user["mdp"] == password:
-                return user
+        for dude in self.users:
+            if dude["email"] == email and dude["password"] == password:
+                return dude
         return None

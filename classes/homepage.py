@@ -27,12 +27,13 @@ class Homepage(Window):
     def run_display(self):
         self.display_book()
         self.display_login_signup()
+        self.logged_in_user = None
 
     def display_book(self):
         self.frame_titre = tkinter.Frame(self.window)
         self.frame_titre.pack(side="top", padx=20, pady=20)
         titre = tkinter.Label(
-            self.frame_titre, text="Bienvenue dans la bibliothèque", font=("Arial", 24)
+            self.frame_titre, text="Welcome in the library", font=("Arial", 24)
         )
         titre.pack(pady=20)
 
@@ -71,7 +72,7 @@ class Homepage(Window):
             self.window, book, self.run_display, self.logged_in_user
         )
 
-        self.book_details_page
+        self.book_details_page.run_display_book()
 
     def display_login_signup(self):
         """Function that displays the library login and registration buttons"""
@@ -103,11 +104,11 @@ class Homepage(Window):
                 self.books = [
                     Book(
                         item["id"],
-                        item["titre"],
-                        item["auteur"],
-                        item["annee_publication"],
+                        item["title"],
+                        item["author"],
+                        item["publication_year"],
                         item["isbn"],
-                        item["categorie"],
+                        item["gender"],
                         item["is_reserved"],
                         item["reserved_by"],
                     )
@@ -117,7 +118,7 @@ class Homepage(Window):
         except FileNotFoundError:
             self.books = []
 
-    def create_account(self, nom, prenom, email, password, dialog):
+    def create_account(self, name, surname, email, password, dialog):
         """Function that allows the user to enter the data needed to create an account in the library.
 
         Args:
@@ -127,7 +128,7 @@ class Homepage(Window):
             password (char): the password that the user will choose
             dialog : the message displayed to the user
         """
-        self.user_db.create_account(nom, prenom, email, password)
+        self.user_db.create_account(name, surname, email, password)
         messagebox.showinfo("Success", "Account created successfully!")
         dialog.destroy()
 
@@ -136,12 +137,12 @@ class Homepage(Window):
         dialog = tkinter.Toplevel()
         dialog.title("Create Account")
 
-        nom_label = tkinter.Label(dialog, text="Nom:")
+        nom_label = tkinter.Label(dialog, text="Name:")
         nom_label.pack()
         nom_entry = tkinter.Entry(dialog)
         nom_entry.pack()
 
-        prenom_label = tkinter.Label(dialog, text="Prénom:")
+        prenom_label = tkinter.Label(dialog, text="Surname:")
         prenom_label.pack()
         prenom_entry = tkinter.Entry(dialog)
         prenom_entry.pack()

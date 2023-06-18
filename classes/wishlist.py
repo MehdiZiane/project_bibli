@@ -8,7 +8,7 @@ class Wishlist:
     def __init__(self):
         self.books = []
 
-    def ajouter_livre(self, book, logged_in_user):
+    def add_book_to_wishlist(self, book, logged_in_user):
         """Function enabling the user to add a book he would like to reserve or that he liked in a wishlist
 
         Args:
@@ -16,16 +16,14 @@ class Wishlist:
             logged_in_user : to check if the user is logged in
         """
         if logged_in_user == None:
-            messagebox.showinfo(
-                "info", "Veuillez vous connecter pour ajouter un livre à vos favoris"
-            )
+            messagebox.showinfo("info", "Please login to add a book to your favorites")
         else:
             print(book)
             logged_in_user["wishlist"].append(book.title)
-            messagebox.showinfo("info", "Un livre à été ajouté à la liste de souhaits")
-            self.sauvegarder_wishlist(logged_in_user)
+            messagebox.showinfo("info", "A book has been added to the wishlist")
+            self.save_wishlist(logged_in_user)
 
-    def retirer_livre(self, books):
+    def remove_book(self, books):
         """Function enabling thr user to remove a book from his wishlist
 
         Args:
@@ -34,25 +32,25 @@ class Wishlist:
 
         if books in self.books:
             self.books.remove(books)
-            print("Un livre a été retiré de la liste de souhaits.")
+            print("A book has been removed from the wishlist")
         else:
-            print("Ce livre n'est pas dans la liste de souhaits !")
+            print("This book is not in the wishlist!")
 
-    def afficher_liste(self):
+    def show_wishlist(self):
         """Function enabling the user to view and consult his full wishlist"""
 
         if self.books:
-            print("Liste de souhaits :")
+            print("favorite:")
             for books in self.books:
-                print("Titre :", books.title)
-                print("Auteur :", books.auteur)
-                print("Année de publication", books.publication_year)
-                print("Numéro ibsn", books.isbn)
-                print("Genre", books.category)
+                print("Title :", books.title)
+                print("Author :", books.auteur)
+                print("publication year", books.publication_year)
+                print("ibsn number", books.isbn)
+                print("Gender", books.category)
         else:
-            print("La liste de souhaits est vide.")
+            print("The wish list is empty.")
 
-    def sauvegarder_wishlist(self, logged_in_user):
+    def save_wishlist(self, logged_in_user):
         """Function for saving the books the user would like in a wishlist
 
         Args:

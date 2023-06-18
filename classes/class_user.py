@@ -1,14 +1,14 @@
 class User:
     """Class use to manage users registered in the database"""
 
-    def __init__(self, id, nom, prenom, mdp, email, isAdmin=False):
-        self.id = id
+    def __init__(self, user_id, nom, prenom, mdp, email, is_admin=False):
+        self.user_id = user_id
         self.nom = nom
         self.prenom = prenom
         self.mdp = mdp
         self.email = email
-        self.isAdmin = isAdmin
+        self.is_admin = is_admin
         self.wishlist = []
 
-    def afficher_infos(self):
-        return f"Utilisateur: {self.nom} {self.prenom}\nID: {self.id}\nEmail: {self.email}\n"
+    def show(self):
+        return f"Utilisateur: {self.nom} {self.prenom}\nID: {self.user_id}\nEmail: {self.email}\n"

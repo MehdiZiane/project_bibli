@@ -1,7 +1,6 @@
 import tkinter as tk
 import json
 from tkinter import messagebox
-from classes.class_book import Book
 from classes.wishlist import Wishlist
 
 
@@ -21,7 +20,7 @@ class BookDetailsPage:
         self.frame_detail_right.pack(side="right", padx=20, pady=20)
 
         self.frame_detail_top = tk.Frame(self.window)
-        self.frame_detail_top.pack(side="top")
+        self.frame_detail_top.pack(side="top", padx=20, pady=20)
 
         print(self.book.is_reserved)
         print(self.book.reserved_by)
@@ -49,23 +48,21 @@ class BookDetailsPage:
                 self.window.after(
                     2 * 60 * 60 * 1000, self.cancel_reserve
                 )  # Lancer le timer de 2 heures
-                messagebox.showinfo("info", "livre reservé avec succes")
+                messagebox.showinfo("info", "book reserve successfully")
                 self.update_database()
                 print(self.book.is_reserved)
                 print(self.book.reserved_by)
             else:
-                messagebox.showinfo(
-                    "Info", "Vous devez être connecté pour réserver un livre."
-                )
+                messagebox.showinfo("Info", "You must be logged in to reserve a book.")
         else:
-            messagebox.showinfo("Info", "Ce livre est déjà réservé.")
+            messagebox.showinfo("Info", "This book is already booked.")
 
     def cancel_reserve(self):
         # Annuler la réservation du livre
         self.book.is_reserved = False
         self.book.reserve_by = None
         self.update_reserve_cancel_buttons()
-        messagebox.showinfo("Information", "Réservation annulée avec succès.")
+        messagebox.showinfo("Info", "Booking cancelled with success.")
         self.update_database()
         print(self.book.is_reserved)
         print(self.book.reserved_by)
@@ -106,14 +103,14 @@ class BookDetailsPage:
 
         # Auteur du livre
         author_label = tk.Label(
-            self.frame_detail_left, text="Auteur: " + self.book.author
+            self.frame_detail_left, text="Author: " + self.book.author
         )
         author_label.pack()
 
         # Année de publication du livre
         publication_year_label = tk.Label(
             self.frame_detail_left,
-            text="Année de publication: " + str(self.book.publication_year),
+            text="Publication year: " + str(self.book.publication_year),
         )
         publication_year_label.pack()
 
@@ -123,7 +120,7 @@ class BookDetailsPage:
 
         # Catégorie du livre
         category_label = tk.Label(
-            self.frame_detail_left, text="Catégorie: " + self.book.category
+            self.frame_detail_left, text="Gender: " + self.book.category
         )
         category_label.pack()
 
@@ -142,8 +139,10 @@ class BookDetailsPage:
         # Bouton d'ajout à la liste de souhaits
         wishlist_button = tk.Button(
             self.frame_detail_right,
-            text="Favoris",
-            command=lambda: self.wishlist.ajouter_livre(self.book, self.logged_in_user),
+            text="Favorite",
+            command=lambda: self.wishlist.add_book_to_wishlist(
+                self.book, self.logged_in_user
+            ),
         )
         wishlist_button.pack()
 

@@ -37,11 +37,9 @@ class UserPage:
         self.frame_user_right.destroy()
         self.frame_user_left.destroy()
         self.frame_user_top.destroy()
-        book_details_page = BookDetailsPage(self.window, book, self.display_user_page)
-
-        # Vérifiez si un utilisateur est connecté et passez-le à la page des détails du livre
-        if self.logged_in_user:
-            book_details_page.set_logged_in_user(self.logged_in_user)
+        book_details_page = BookDetailsPage(
+            self.window, book, self.display_user_page, self.logged_in_user
+        )
 
         book_details_page.run_display_book()
 
@@ -52,11 +50,11 @@ class UserPage:
                 self.books = [
                     Book(
                         item["id"],
-                        item["titre"],
-                        item["auteur"],
-                        item["annee_publication"],
+                        item["title"],
+                        item["author"],
+                        item["publication_year"],
                         item["isbn"],
-                        item["categorie"],
+                        item["gender"],
                     )
                     for item in data
                 ]
@@ -75,7 +73,7 @@ class UserPage:
 
     def display_book(self):
         titre = tkinter.Label(
-            self.frame_user_top, text="Bienvenue membre", font=("Arial", 24)
+            self.frame_user_top, text="Welcome Member", font=("Arial", 24)
         )
         titre.pack(pady=20)
 
@@ -111,19 +109,21 @@ class AdminPage(UserPage):
 
         # Bouton pour modifier la base de données "users"
         users_button = tkinter.Button(
-            self.frame_user_right, text="Modifier Users", command=self.gestion_db_users
+            self.frame_user_right, text="Modify user", command=self.gestion_db_users
         )
         users_button.pack(pady=10)
 
         # Bouton pour modifier la base de données "book"
         book_button = tkinter.Button(
-            self.frame_user_right, text="Modifier Book", command=self.gestion_db_livres
+            self.frame_user_right, text="Modify book", command=self.gestion_db_livres
         )
         book_button.pack(pady=10)
 
         # bouton pour reserver un livre
         reserve_button = tkinter.Button(
-            self.frame_user_right, text="Reserver un livre", command=self.reserver_livre
+            self.frame_user_right,
+            text="Reserve management",
+            command=self.reserver_livre,
         )
         reserve_button.pack(pady=10)
 

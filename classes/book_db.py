@@ -1,5 +1,4 @@
 import json
-from classes.class_book import Book
 
 
 class BookDatabase:
@@ -25,7 +24,7 @@ class BookDatabase:
         with open("./db/book.json", "w") as file:
             json.dump(self.books, file, indent=4)
 
-    def ajouter_livre(self, book_id, title, author, publication_year, isbn, category):
+    def add_book(self, book_id, title, author, publication_year, isbn, category):
         """Function for adding a book to the database
 
         Args:
@@ -49,7 +48,7 @@ class BookDatabase:
         self.books.append(livre)
         self.save_books_to_file()
 
-    def supprimer_livre(self, book_id):
+    def delete_book(self, book_id):
         """Function for delete a book from the library
 
         Args:

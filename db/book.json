@@ -1,31 +1,31 @@
 [
     {
         "id": 1,
-        "titre": "Harry Potter et le prisonnier d'Azkaban",
-        "auteur": "J.K Rowling",
-        "annee_publication": 2021,
+        "title": "Harry Potter et le prisonnier d'Azkaban",
+        "author": "J.K Rowling",
+        "publication_year": 2021,
         "isbn": "9781234567890",
-        "categorie": "Fiction",
+        "gender": "Fiction",
         "is_reserved": false,
-        "reserved_by": 5
+        "reserved_by": 6
     },
     {
         "id": 2,
-        "titre": "Cendrillon est morte",
-        "auteur": "Kalynn Bayron",
-        "annee_publication": 2022,
+        "title": "Cendrillon est morte",
+        "author": "Kalynn Bayron",
+        "publication_year": 2022,
         "isbn": "9780987654321",
-        "categorie": "Science-fiction",
+        "gender": "Science-fiction",
         "is_reserved": false,
         "reserved_by": null
     },
     {
         "id": 3,
-        "titre": "Par-del\u00c3\u00a0 la magie",
-        "auteur": "Tom Felton",
-        "annee_publication": 2020,
+        "title": "Par-del\u00c3\u00a0 la magie",
+        "author": "Tom Felton",
+        "publication_year": 2020,
         "isbn": "9789876543210",
-        "categorie": "Thriller",
+        "gender": "Thriller",
         "is_reserved": false,
         "reserved_by": null
     }

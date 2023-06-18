@@ -1,56 +1,58 @@
 [
     {
         "id": 1,
-        "nom": "Doe",
-        "prenom": "John",
-        "mdp": "mdp",
+        "name": "Doe",
+        "surname": "John",
+        "password": "password",
         "email": "john.doe@example.com",
         "admin": false,
         "wishlist": []
     },
     {
         "id": 2,
-        "nom": "Smith",
-        "prenom": "Jane",
-        "mdp": "mdp1",
+        "name": "Smith",
+        "surname": "Jane",
+        "password": "mdp1",
         "email": "jane.smith@example.com",
         "admin": false,
         "wishlist": []
     },
     {
         "id": 3,
-        "nom": "Johnson",
-        "prenom": "David",
-        "mdp": "ad",
+        "name": "Johnson",
+        "surname": "David",
+        "password": "ad",
         "email": "david.johnson@example.com",
         "admin": false,
         "wishlist": []
     },
     {
         "id": 4,
-        "nom": "Johnson",
-        "prenom": "Sarah",
-        "mdp": "ad",
+        "name": "Johnson",
+        "surname": "Sarah",
+        "password": "ad",
         "email": "sarah.johnson@example.com",
         "admin": false,
         "wishlist": []
     },
     {
         "id": 5,
-        "nom": "ziane",
-        "prenom": "mehdi",
-        "mdp": "1234",
+        "name": "ziane",
+        "surname": "mehdi",
+        "password": "1234",
         "email": "me",
         "admin": false,
         "wishlist": []
     },
     {
         "id": 6,
-        "nom": "ze",
-        "prenom": "ze",
-        "mdp": "ze",
+        "name": "ze",
+        "surname": "ze",
+        "password": "ze",
         "email": "ze",
         "admin": true,
-        "wishlist": []
+        "wishlist": [
+            "Harry Potter et le prisonnier d'Azkaban"
+        ]
     }
 ]
