@@ -6,11 +6,11 @@ from classes.wishlist import Wishlist
 
 
 class BookDetailsPage:
-    def __init__(self, window, book, callback):
+    def __init__(self, window, book, callback, logged_in_user):
         self.window = window
         self.book = book
         self.callback = callback
-        self.logged_in_user = None
+        self.logged_in_user = logged_in_user
         self.wishlist = Wishlist()
 
     def run_display_book(self):

@@ -3,7 +3,6 @@ import json
 from tkinter import messagebox
 from classes.class_book import Book
 from classes.user_db import UserDatabase
-from classes.class_user import User
 from classes.window import Window
 from classes.book_details_page import BookDetailsPage
 from classes.user_and_admin_page import UserPage
@@ -68,13 +67,11 @@ class Homepage(Window):
         self.frame_right.destroy()
         self.frame_left.destroy()
         self.frame_titre.destroy()
-        self.book_details_page = BookDetailsPage(self.window, book, self.run_display)
+        self.book_details_page = BookDetailsPage(
+            self.window, book, self.run_display, self.logged_in_user
+        )
 
-        # Check if a user is logged in and pass the argument to the book detail page
-        if self.logged_in_user:
-            self.book_details_page.set_logged_in_user(self.logged_in_user)
-
-        self.book_details_page.run_display_book()
+        self.book_details_page
 
     def display_login_signup(self):
         """Function that displays the library login and registration buttons"""
@@ -216,7 +213,9 @@ class Homepage(Window):
                 self.frame_right.destroy()
                 self.frame_left.destroy()
                 self.frame_titre.destroy()
-                UserPage(self.window, self.logged_in_user).display_user_page()
+                UserPage(
+                    self.window, self.logged_in_user, self.run_display
+                ).display_user_page()
 
             else:
                 messagebox.showinfo("succes", "welcome admin")
@@ -224,7 +223,9 @@ class Homepage(Window):
                 self.frame_right.destroy()
                 self.frame_left.destroy()
                 self.frame_titre.destroy()
-                AdminPage().display_user_page()
+                AdminPage(
+                    self.window, self.logged_in_user, self.run_display
+                ).display_user_page()
 
         else:
             messagebox.showerror("Error", "Invalid email or password.")
