@@ -27,9 +27,6 @@ class BookDetailsPage:
 
         self.display_book_details()
 
-    def set_logged_in_user(self, user):
-        self.logged_in_user = user
-
     def load_database(self):
         with open("./db/book.json", "r") as file:
             data = json.load(file)
