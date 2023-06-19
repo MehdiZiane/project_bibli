@@ -13,6 +13,8 @@ class Book:
         category,
         is_reserved=False,
         reserved_by=None,
+        is_borrowed=False,
+        borrowed_by=None,
     ):
         self.book_id = book_id
         self.title = title
@@ -22,6 +24,8 @@ class Book:
         self.category = category
         self.is_reserved = is_reserved
         self.reserved_by = reserved_by
+        is_borrowed = is_borrowed
+        borrowed_by = borrowed_by
 
     def reserve_book(self):
         """Function use to reserve a book"""
@@ -34,3 +38,17 @@ class Book:
     def add_to_wishlist(self):
         """Function use to add a book to a wishlist"""
         self.add_wishlist = True
+
+    def borrow_book(self, user):
+        """Function used to borrow a book"""
+        if not self.is_reserved and not self.is_borrowed:
+            self.is_borrowed = True
+            self.borrowed_by = user
+            # Mettre à jour les informations sur l'utilisateur qui a emprunté le livre
+
+    def return_book(self):
+        """Function used to return a borrowed book"""
+        if self.is_borrowed:
+            self.is_borrowed = False
+            self.borrowed_by = None
+            # Mettre à jour les informations sur l'utilisateur qui avait emprunté le livre
