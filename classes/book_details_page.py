@@ -40,8 +40,8 @@ class BookDetailsPage:
             json.dump(data, file, indent=4)
 
     def reserve(self):
-        if not self.book.is_reserved:
-            if self.logged_in_user:
+        if self.logged_in_user:
+            if not self.book.is_reserved:
                 self.book.is_reserved = True
                 self.book.reserved_by = self.logged_in_user["id"]
                 self.update_reserve_cancel_buttons()
@@ -53,9 +53,9 @@ class BookDetailsPage:
                 print(self.book.is_reserved)
                 print(self.book.reserved_by)
             else:
-                messagebox.showinfo("Info", "You must be logged in to reserve a book.")
+                messagebox.showinfo("Info", "This book is already booked.")
         else:
-            messagebox.showinfo("Info", "This book is already booked.")
+            messagebox.showinfo("Info", "You must be logged in to reserve a book.")
 
     def cancel_reserve(self):
         # Annuler la réservation du livre

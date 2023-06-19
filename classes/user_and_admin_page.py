@@ -45,7 +45,7 @@ class UserPage:
 
     def load_books(self):
         try:
-            with open("./db/book.json", "r") as file:
+            with open("./db/book.json", "r", encoding="utf-8") as file:
                 data = json.load(file)
                 self.books = [
                     Book(
@@ -55,6 +55,8 @@ class UserPage:
                         item["publication_year"],
                         item["isbn"],
                         item["gender"],
+                        item["is_reserved"],
+                        item["reserved_by"],
                     )
                     for item in data
                 ]
@@ -75,7 +77,7 @@ class UserPage:
         titre = tkinter.Label(
             self.frame_user_top, text="Welcome Member", font=("Arial", 24)
         )
-        titre.pack(pady=20)
+        titre.pack(pady=10)
 
         # Loading books from a JSON file
         self.load_books()
@@ -100,7 +102,6 @@ class UserPage:
         self.frame_user_top.destroy()
         self.logged_in_user = None
         self.call_back()
-        print(self.logged_in_user)
 
 
 class AdminPage(UserPage):
