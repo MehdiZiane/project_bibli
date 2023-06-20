@@ -25,7 +25,7 @@ class Borrowed_page:
             data = json.load(file)
 
         # Filter the books to display only the borrowed ones
-        borrowed_books = [book for book in data if book["is_borrowed"]]
+        reserved_books = [book for book in data if book["is_reserved"]]
 
         return_button = tkinter.Button(
             self.frame_borrowed_right,
@@ -34,7 +34,7 @@ class Borrowed_page:
         )
         return_button.pack(pady=5)
 
-        if not borrowed_books:
+        if not reserved_books:
             # Display a message if there are no borrowed books
             no_books_label = tkinter.Label(
                 self.frame_borrowed_top,
@@ -44,8 +44,8 @@ class Borrowed_page:
             no_books_label.pack(pady=10)
         else:
             # Display the borrowed books
-            for book in borrowed_books:
-                book_info = f"Title: {book['title']}\nAuthor: {book['author']}\nBorrowed by: {book['borrowed_by']}"
+            for book in reserved_books:
+                book_info = f"Title: {book['title']}\nAuthor: {book['author']}\nReserved by: {book['reserved_by']}"
                 book_label = tkinter.Label(
                     self.frame_borrowed_left,
                     text=book_info,
