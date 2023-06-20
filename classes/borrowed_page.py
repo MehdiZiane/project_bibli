@@ -1,6 +1,7 @@
 import tkinter
 import json
 from classes.user_db import UserDatabase
+from classes.book_details_page import BookDetailsPage
 
 
 class Borrowed_page:
@@ -55,6 +56,9 @@ class Borrowed_page:
                     reserved_by_info = "reserved by: Unknown User"
 
                 book_info = f"Title: {book['title']}\nAuthor: {book['author']}\n{reserved_by_info}"
+
+                book_frame = tkinter.Frame(self.frame_borrowed_left)
+                book_frame.pack(side="top", pady=5)
                 book_label = tkinter.Label(
                     self.frame_borrowed_left,
                     text=book_info,
@@ -62,6 +66,30 @@ class Borrowed_page:
                     justify="left",
                 )
                 book_label.pack(pady=5)
+
+                # Create Accept button
+                accept_button = tkinter.Button(
+                    self.frame_borrowed_left,
+                    text="Accept",
+                    command=lambda book_id=book["id"]: self.accept_borrow(book_id),
+                )
+                accept_button.pack(side="right", padx=10)
+
+                # Create Deny button
+                deny_button = tkinter.Button(
+                    self.frame_borrowed_left,
+                    text="Deny",
+                    command=lambda book_id=book["id"]: self.deny_borrow(book_id),
+                )
+                deny_button.pack(side="right", padx=10)
+
+    def accept_borrow(self, book_id):
+        print(book_id)
+        pass
+
+    def deny_borrow(self, book_id):
+        print(book_id)
+        pass
 
     def back_page(self):
         self.frame_borrowed_left.destroy()
