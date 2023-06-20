@@ -5,6 +5,7 @@ from classes.class_book import Book
 from classes.user_db import UserDatabase
 from classes.class_user import User
 from classes.book_details_page import BookDetailsPage
+from classes.borrowed_page import Borrowed_page
 
 
 class UserPage:
@@ -57,6 +58,8 @@ class UserPage:
                         item["gender"],
                         item["is_reserved"],
                         item["reserved_by"],
+                        item["is_borrowed"],
+                        item["borrowed_by"],
                     )
                     for item in data
                 ]
@@ -110,13 +113,13 @@ class AdminPage(UserPage):
 
         # Bouton pour modifier la base de données "users"
         users_button = tkinter.Button(
-            self.frame_user_right, text="Modify user", command=self.gestion_db_users
+            self.frame_user_right, text="Modify user", command=self.manage_db_users
         )
         users_button.pack(pady=10)
 
         # Bouton pour modifier la base de données "book"
         book_button = tkinter.Button(
-            self.frame_user_right, text="Modify book", command=self.gestion_db_livres
+            self.frame_user_right, text="Modify book", command=self.manage_db_livres
         )
         book_button.pack(pady=10)
 
@@ -124,11 +127,18 @@ class AdminPage(UserPage):
         reserve_button = tkinter.Button(
             self.frame_user_right,
             text="Reserve management",
-            command=self.reserver_livre,
+            command=self.open_borrowed_page,
         )
         reserve_button.pack(pady=10)
 
-    def gestion_db_users(self):
+    def open_borrowed_page(self):
+        self.frame_user_right.destroy()
+        self.frame_user_left.destroy()
+        self.frame_user_top.destroy()
+        borrowed_page = Borrowed_page(self.window, self.display_user_page)
+        borrowed_page.run_display_borrowed()
+
+    def manage_db_users(self):
         # Charger la base de données des utilisateurs depuis le fichier JSON
         with open("user.json", "r+") as f:
             users_data = json.load(f)
@@ -137,7 +147,7 @@ class AdminPage(UserPage):
         for user in users_data:
             print(user)
 
-    def gestion_db_livres(self):
+    def manage_db_livres(self):
         # Charger la base de données des livres depuis le fichier JSON
         with open("book.json", "r+") as f:
             books_data = json.load(f)
