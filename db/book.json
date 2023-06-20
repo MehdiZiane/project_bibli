@@ -30,8 +30,8 @@
         "publication_year": 2020,
         "isbn": "9789876543210",
         "gender": "Thriller",
-        "is_reserved": false,
-        "reserved_by": null,
+        "is_reserved": true,
+        "reserved_by": 6,
         "is_borrowed": false,
         "borrowed_by": null
     }

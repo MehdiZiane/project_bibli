@@ -1,11 +1,13 @@
 import tkinter
 import json
+from classes.user_db import UserDatabase
 
 
 class Borrowed_page:
     def __init__(self, window, callback):
         self.window = window
         self.callback = callback
+        self.user_db = UserDatabase()
 
     def run_display_borrowed(self):
         self.frame_borrowed_left = tkinter.Frame(self.window)
@@ -24,7 +26,7 @@ class Borrowed_page:
         with open("./db/book.json", "r", encoding="utf-8") as file:
             data = json.load(file)
 
-        # Filter the books to display only the borrowed ones
+        # Filter the books to display only the reserved ones
         reserved_books = [book for book in data if book["is_reserved"]]
 
         return_button = tkinter.Button(
@@ -35,7 +37,7 @@ class Borrowed_page:
         return_button.pack(pady=5)
 
         if not reserved_books:
-            # Display a message if there are no borrowed books
+            # Display a message if there are no reserved books
             no_books_label = tkinter.Label(
                 self.frame_borrowed_top,
                 text="No books are currently borrowed.",
@@ -45,7 +47,14 @@ class Borrowed_page:
         else:
             # Display the borrowed books
             for book in reserved_books:
-                book_info = f"Title: {book['title']}\nAuthor: {book['author']}\nReserved by: {book['reserved_by']}"
+                user = self.user_db.get_user_by_id(book["reserved_by"])
+
+                if user:
+                    reserved_by_info = f"reserved by: {user['name']} {user['surname']}"
+                else:
+                    reserved_by_info = "reserved by: Unknown User"
+
+                book_info = f"Title: {book['title']}\nAuthor: {book['author']}\n{reserved_by_info}"
                 book_label = tkinter.Label(
                     self.frame_borrowed_left,
                     text=book_info,

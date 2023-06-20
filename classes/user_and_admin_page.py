@@ -63,7 +63,6 @@ class UserPage:
                     )
                     for item in data
                 ]
-                print(self.books)
         except FileNotFoundError:
             self.books = []
 

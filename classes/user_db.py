@@ -87,3 +87,9 @@ class UserDatabase:
             if dude["email"] == email and dude["password"] == password:
                 return dude
         return None
+
+    def get_user_by_id(self, user_id):
+        for user in self.users:
+            if user["id"] == user_id:
+                return user
+        return None
