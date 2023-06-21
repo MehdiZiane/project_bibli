@@ -1,5 +1,6 @@
 import tkinter
 import json
+from tkinter import messagebox
 from classes.user_db import UserDatabase
 from classes.book_details_page import BookDetailsPage
 
@@ -57,31 +58,26 @@ class Borrowed_page:
 
                 book_info = f"Title: {book['title']}\nAuthor: {book['author']}\n{reserved_by_info}"
 
-                book_frame = tkinter.Frame(self.frame_borrowed_left)
-                book_frame.pack(side="top", pady=5)
-                book_label = tkinter.Label(
+                book_bouton = tkinter.Button(
                     self.frame_borrowed_left,
                     text=book_info,
-                    font=("Arial", 12),
+                    font=("arial", 12),
                     justify="left",
+                    command=lambda book_id=book["id"]: self.show_confirmation_dialog(
+                        book_id
+                    ),
                 )
-                book_label.pack(pady=5)
+                book_bouton.pack(pady=5)
 
-                # Create Accept button
-                accept_button = tkinter.Button(
-                    self.frame_borrowed_left,
-                    text="Accept",
-                    command=lambda book_id=book["id"]: self.accept_borrow(book_id),
-                )
-                accept_button.pack(side="right", padx=10)
+    def show_confirmation_dialog(self, book_id):
+        # Afficher une boîte de dialogue avec les boutons "Yes" et "No"
+        result = messagebox.askyesno("Confirmation", "Are you sure?")
 
-                # Create Deny button
-                deny_button = tkinter.Button(
-                    self.frame_borrowed_left,
-                    text="Deny",
-                    command=lambda book_id=book["id"]: self.deny_borrow(book_id),
-                )
-                deny_button.pack(side="right", padx=10)
+        # Vérifier la réponse de l'utilisateur
+        if result == True:  # Si l'utilisateur a cliqué sur "Yes"
+            self.accept_borrow(book_id)
+        else:  # Si l'utilisateur a cliqué sur "No"
+            self.deny_borrow(book_id)
 
     def accept_borrow(self, book_id):
         print(book_id)
