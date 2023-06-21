@@ -6,10 +6,10 @@
         "publication_year": 2021,
         "isbn": "9781234567890",
         "gender": "Fiction",
-        "is_reserved": true,
+        "is_reserved": false,
         "reserved_by": 6,
         "is_borrowed": false,
-        "borrowed_by": null
+        "borrowed_by": 6
     },
     {
         "id": 2,
@@ -18,8 +18,8 @@
         "publication_year": 2022,
         "isbn": "9780987654321",
         "gender": "Science-fiction",
-        "is_reserved": true,
-        "reserved_by": 6,
+        "is_reserved": false,
+        "reserved_by": null,
         "is_borrowed": false,
         "borrowed_by": null
     },

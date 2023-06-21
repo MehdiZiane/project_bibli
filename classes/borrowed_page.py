@@ -71,7 +71,9 @@ class Borrowed_page:
 
     def show_confirmation_dialog(self, book_id):
         # Afficher une boîte de dialogue avec les boutons "Yes" et "No"
-        result = messagebox.askyesno("Confirmation", "Are you sure?")
+        result = messagebox.askyesno(
+            "Confirmation", "will you accept the borrow of this book "
+        )
 
         # Vérifier la réponse de l'utilisateur
         if result == True:  # Si l'utilisateur a cliqué sur "Yes"
@@ -80,12 +82,53 @@ class Borrowed_page:
             self.deny_borrow(book_id)
 
     def accept_borrow(self, book_id):
-        print(book_id)
-        pass
+        # Charger les données des livres depuis la base de données
+        with open("./db/book.json", "r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        # Rechercher le livre par son ID
+        book = next((book for book in data if book["id"] == book_id), None)
+
+        # Vérifier si le livre a été trouvé
+        if book:
+            # Mettre à jour les informations du livre
+            book["is_borrowed"] = True
+            book["borrowed_by"] = book["reserved_by"]
+            book["is_reserved"] = False
+
+            # Enregistrer les modifications dans la base de données
+            with open("./db/book.json", "w", encoding="utf-8") as file:
+                json.dump(data, file, indent=4)
+
+            # Afficher un message de succès
+            messagebox.showinfo("Success", "Book borrow accepted.")
+        else:
+            # Afficher un message d'erreur si le livre n'a pas été trouvé
+            messagebox.showerror("Error", "Book not found.")
 
     def deny_borrow(self, book_id):
-        print(book_id)
-        pass
+        # Charger les données des livres depuis la base de données
+        with open("./db/book.json", "r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        # Rechercher le livre par son ID
+        book = next((book for book in data if book["id"] == book_id), None)
+
+        # Vérifier si le livre a été trouvé
+        if book:
+            # Réinitialiser les informations de réservation du livre
+            book["is_reserved"] = False
+            book["reserved_by"] = None
+
+            # Enregistrer les modifications dans la base de données
+            with open("./db/book.json", "w", encoding="utf-8") as file:
+                json.dump(data, file, indent=4)
+
+            # Afficher un message de succès
+            messagebox.showinfo("Success", "Book borrow denied.")
+        else:
+            # Afficher un message d'erreur si le livre n'a pas été trouvé
+            messagebox.showerror("Error", "Book not found.")
 
     def back_page(self):
         self.frame_borrowed_left.destroy()

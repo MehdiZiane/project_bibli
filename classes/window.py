@@ -6,9 +6,10 @@ class Window:
 
     def __init__(self):
         self.window = tkinter.Tk()
-        self.window.title("library from the star")
-        self.window.geometry("1500x800")
-        self.window.wm_minsize(1600, 800)
+        self.window.title("may the force be in book")
+        self.window.geometry("800x600")
+        # Configuration de l'option de redimensionnement de la fenêtre
+        self.window.resizable(width=True, height=True)
 
     def run(self):
         self.window.mainloop()
