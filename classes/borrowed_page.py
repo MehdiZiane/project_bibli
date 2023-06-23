@@ -2,7 +2,7 @@ import tkinter
 import json
 from tkinter import messagebox
 from classes.user_db import UserDatabase
-from classes.book_details_page import BookDetailsPage
+from classes.book_db import BookDatabase
 
 
 class Borrowed_page:
@@ -12,7 +12,7 @@ class Borrowed_page:
         self.window = window
         self.callback = callback
         self.user_db = UserDatabase()
-        self.book_db = BookDetailsPage()
+        self.book_db = BookDatabase()
 
     def run_display_borrowed(self):
         """Function for displaying borrowed books in the graphical interface"""
@@ -29,11 +29,10 @@ class Borrowed_page:
 
     def display_borrowed(self):
         # Load the books from the database
-        with open("./db/book.json", "r", encoding="utf-8") as file:
-            data = json.load(file)
+        data = self.book_db.load_books()
 
         # Filter the books to display only the reserved ones
-        reserved_books = [book for book in data if book["is_reserved"]]
+        reserved_books = [book for book in data if book.is_reserved]
 
         return_button = tkinter.Button(
             self.frame_borrowed_right,
@@ -53,21 +52,24 @@ class Borrowed_page:
         else:
             # Display the borrowed books
             for book in reserved_books:
-                user = self.user_db.get_user_by_id(book["reserved_by"])
+                user = self.user_db.get_user_by_id(book.reserved_by)
+                print(user)
 
                 if user:
                     reserved_by_info = f"reserved by: {user['name']} {user['surname']}"
                 else:
                     reserved_by_info = "reserved by: Unknown User"
 
-                book_info = f"Title: {book['title']}\nAuthor: {book['author']}\n{reserved_by_info}"
+                book_info = (
+                    f"Title: {book.title}\nAuthor: {book.author}\n{reserved_by_info}"
+                )
 
                 book_bouton = tkinter.Button(
                     self.frame_borrowed_left,
                     text=book_info,
                     font=("arial", 12),
                     justify="left",
-                    command=lambda book_id=book["id"]: self.show_confirmation_dialog(
+                    command=lambda book_id=book.book_id: self.show_confirmation_dialog(
                         book_id
                     ),
                 )

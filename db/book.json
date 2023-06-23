@@ -6,7 +6,7 @@
         "publication_year": 2021,
         "isbn": "9781234567890",
         "gender": "Fiction",
-        "is_reserved": false,
+        "is_reserved": true,
         "reserved_by": 6,
         "is_borrowed": false,
         "borrowed_by": 6
