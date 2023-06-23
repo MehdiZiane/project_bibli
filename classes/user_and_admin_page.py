@@ -45,6 +45,7 @@ class UserPage:
         book_details_page.run_display_book()
 
     def load_books(self):
+        """Function that loads books from a JSON file        """
         try:
             with open("./db/book.json", "r", encoding="utf-8") as file:
                 data = json.load(file)
@@ -107,6 +108,7 @@ class UserPage:
 
 
 class AdminPage(UserPage):
+    """ Class who displays the admin page. This class inherits from the UserPage class"""
     def display_user_page(self):
         super().display_user_page()
 
@@ -131,13 +133,15 @@ class AdminPage(UserPage):
         reserve_button.pack(pady=10)
 
     def open_borrowed_page(self):
+        """Function used to open a page giving details of a book"""
         self.frame_user_right.destroy()
         self.frame_user_left.destroy()
         self.frame_user_top.destroy()
         borrowed_page = Borrowed_page(self.window, self.display_user_page)
         borrowed_page.run_display_borrowed()
 
-    def manage_db_users(self):
+    def manage_db_users(self): 
+        """Function used to manage details of a user in the database    """
         # Charger la base de données des utilisateurs depuis le fichier JSON
         with open("user.json", "r+") as f:
             users_data = json.load(f)
@@ -147,6 +151,7 @@ class AdminPage(UserPage):
             print(user)
 
     def manage_db_livres(self):
+        """Function used to manage details of a book in the database    """
         # Charger la base de données des livres depuis le fichier JSON
         with open("book.json", "r+") as f:
             books_data = json.load(f)
