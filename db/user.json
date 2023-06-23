@@ -51,6 +51,17 @@
         "password": "ze",
         "email": "ze",
         "admin": true,
+        "wishlist": [
+            "Harry Potter et le prisonnier d'Azkaban"
+        ]
+    },
+    {
+        "id": 7,
+        "name": "aa",
+        "surname": "aa",
+        "password": "aa",
+        "email": "aa",
+        "admin": false,
         "wishlist": []
     }
 ]

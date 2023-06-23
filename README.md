@@ -2,6 +2,8 @@
 
 This is a Library Management System application developed in Python using the Tkinter library for the graphical user interface. It allows users to borrow and reserve books, and provides administrative functionalities for managing the library.
 
+last update on this repositorie is 23/06/23 at 23:30
+
 ## Features
 
 - User registration and login
