@@ -79,9 +79,6 @@ class UserDatabase:
         Args:
             email (char): the email address register by the user
             password (char): the password register by the user
-
-        Returns:
-            _type_: _description_
         """
         for dude in self.users:
             if dude["email"] == email and dude["password"] == password:

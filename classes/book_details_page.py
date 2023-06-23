@@ -5,6 +5,8 @@ from classes.wishlist import Wishlist
 
 
 class BookDetailsPage:
+    """Class used to display the details of a book on a new page in the library's graphical interface"""
+
     def __init__(self, window, book, callback, logged_in_user):
         self.window = window
         self.book = book
@@ -13,6 +15,8 @@ class BookDetailsPage:
         self.wishlist = Wishlist()
 
     def run_display_book(self):
+        """Function that displays the details of a book"""
+
         self.frame_detail_left = tk.Frame(self.window)
         self.frame_detail_left.pack(side="left", padx=20, pady=20)
 
@@ -33,10 +37,14 @@ class BookDetailsPage:
         return data
 
     def save_database(self, data):
+        """Function for saving a list of books into a file"""
+
         with open("./db/book.json", "w") as file:
             json.dump(data, file, indent=4)
 
     def reserve(self):
+        """Function that checks if a book has already been reserved and if the user is logged in"""
+
         if self.logged_in_user:
             if not self.book.is_reserved:
                 self.book.is_reserved = True
@@ -55,7 +63,8 @@ class BookDetailsPage:
             messagebox.showinfo("Info", "You must be logged in to reserve a book.")
 
     def cancel_reserve(self):
-        # Annuler la réservation du livre
+        # Cancel book reservation
+
         self.book.is_reserved = False
         self.book.reserve_by = None
         self.update_reserve_cancel_buttons()
@@ -65,24 +74,26 @@ class BookDetailsPage:
         print(self.book.reserved_by)
 
     def update_reserve_cancel_buttons(self):
-        # Vérifier si le livre est réservé et mettre à jour les états des boutons en conséquence
+        # Check whether the book is reserved and update the button status accordingly
+
         if self.logged_in_user["id"] == self.book.reserved_by:
             if self.book.is_reserved:
                 self.reserve_button.config(
                     state=tk.DISABLED
-                )  # Désactiver le bouton de réservation
+                )  # Disable the reservation button
                 self.cancel_reservation_button.config(
                     state=tk.NORMAL
-                )  # Activer le bouton d'annulation de réservation
+                )  # Activate the cancel reservation button
             else:
                 self.reserve_button.config(
                     state=tk.NORMAL
-                )  # Activer le bouton de réservation
+                )  # Activate the reservation button
                 self.cancel_reservation_button.config(
                     state=tk.DISABLED
-                )  # Désactiver le bouton d'annulation de réservation
+                )  # Disable the cancel reservation button
 
     def update_database(self):
+        """Function for updating the book database when a reservation has been made"""
         data = self.load_database()
         for book_data in data:
             if book_data["id"] == self.book.book_id:
@@ -91,49 +102,51 @@ class BookDetailsPage:
                 break
         self.save_database(data)
 
-        # Créez les widgets et la mise en page pour la page des détails du livre ici
+        # Create the widgets and layout for the book details page here
 
     def display_book_details(self):
-        # Titre du livre
+        """Function for displaying details of a book"""
+
+        # Title of the book
         title_label = tk.Label(self.frame_detail_top, text=self.book.title)
         title_label.pack()
 
-        # Auteur du livre
+        # Author of the book
         author_label = tk.Label(
             self.frame_detail_left, text="Author: " + self.book.author
         )
         author_label.pack()
 
-        # Année de publication du livre
+        # Year of publication of the book
         publication_year_label = tk.Label(
             self.frame_detail_left,
             text="Publication year: " + str(self.book.publication_year),
         )
         publication_year_label.pack()
 
-        # ISBN du livre
+        # ISBN of the book
         isbn_label = tk.Label(self.frame_detail_left, text="ISBN: " + self.book.isbn)
         isbn_label.pack()
 
-        # Catégorie du livre
+        # Category of the book
         category_label = tk.Label(
             self.frame_detail_left, text="Gender: " + self.book.category
         )
         category_label.pack()
 
-        # Bouton de retour
+        # Return button
         back_button = tk.Button(
             self.frame_detail_left, text="Retour", command=self.return_to_homepage
         )
         back_button.pack()
 
-        # Bouton pour réserver
+        # Reservation button
         self.reserve_button = tk.Button(
             self.frame_detail_right, text="reserve", command=self.reserve
         )
         self.reserve_button.pack()
 
-        # Bouton d'ajout à la liste de souhaits
+        # Add to wishlist button
         wishlist_button = tk.Button(
             self.frame_detail_right,
             text="Favorite",
@@ -143,7 +156,7 @@ class BookDetailsPage:
         )
         wishlist_button.pack()
 
-        # Bouton pour annuler une réservation
+        # Cancel reservation button
         self.cancel_reservation_button = tk.Button(
             self.frame_detail_right,
             text="Cancel reservation",
@@ -152,11 +165,11 @@ class BookDetailsPage:
         )
         self.cancel_reservation_button.pack()
 
-        # Mettre à jour l'état des boutons de réservation et d'annulation
+        # Update the status of the booking and cancellation buttons
         self.update_reserve_cancel_buttons()
 
     def return_to_homepage(self):
-        self.frame_detail_left.destroy()  # Fermer la page des détails du livre
+        self.frame_detail_left.destroy()  # Close the book details page
         self.frame_detail_right.destroy()
         self.frame_detail_top.destroy()
-        self.callback()  # Appeler la fonction de retour fournie par la classe parent
+        self.callback()  # Call the return function provided by the parent class

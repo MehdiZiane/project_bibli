@@ -8,7 +8,7 @@ class Window:
         self.window = tkinter.Tk()
         self.window.title("may the force be in book")
         self.window.geometry("800x600")
-        # Configuration de l'option de redimensionnement de la fenêtre
+        # Configuring the window resize option
         self.window.resizable(width=True, height=True)
 
     def run(self):

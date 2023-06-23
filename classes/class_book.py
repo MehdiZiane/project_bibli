@@ -44,11 +44,11 @@ class Book:
         if not self.is_reserved and not self.is_borrowed:
             self.is_borrowed = True
             self.borrowed_by = user
-            # Mettre à jour les informations sur l'utilisateur qui a emprunté le livre
+            # Update information about the user who borrowed the book
 
     def return_book(self):
         """Function used to return a borrowed book"""
         if self.is_borrowed:
             self.is_borrowed = False
             self.borrowed_by = None
-            # Mettre à jour les informations sur l'utilisateur qui avait emprunté le livre
+            # Update information about the user who borrowed the book

@@ -45,7 +45,7 @@ class UserPage:
         book_details_page.run_display_book()
 
     def load_books(self):
-        """Function that loads books from a JSON file        """
+        """Function that loads books from a JSON file"""
         try:
             with open("./db/book.json", "r", encoding="utf-8") as file:
                 data = json.load(file)
@@ -108,23 +108,24 @@ class UserPage:
 
 
 class AdminPage(UserPage):
-    """ Class who displays the admin page. This class inherits from the UserPage class"""
+    """Class who displays the admin page. This class inherits from the UserPage class"""
+
     def display_user_page(self):
         super().display_user_page()
 
-        # Bouton pour modifier la base de données "users"
+        # Button to modify the "users" database
         users_button = tkinter.Button(
             self.frame_user_right, text="Modify user", command=self.manage_db_users
         )
         users_button.pack(pady=10)
 
-        # Bouton pour modifier la base de données "book"
+        # Button to modify the "book" database
         book_button = tkinter.Button(
             self.frame_user_right, text="Modify book", command=self.manage_db_livres
         )
         book_button.pack(pady=10)
 
-        # bouton pour reserver un livre
+        # book reservation button
         reserve_button = tkinter.Button(
             self.frame_user_right,
             text="Reserve management",
@@ -140,22 +141,22 @@ class AdminPage(UserPage):
         borrowed_page = Borrowed_page(self.window, self.display_user_page)
         borrowed_page.run_display_borrowed()
 
-    def manage_db_users(self): 
-        """Function used to manage details of a user in the database    """
+    def manage_db_users(self):
+        """Function used to manage details of a user in the database"""
         # Charger la base de données des utilisateurs depuis le fichier JSON
         with open("user.json", "r+") as f:
             users_data = json.load(f)
 
-        # Faites quelque chose avec la base de données des utilisateurs, par exemple afficher les données
+        # Do something with the user database, for example display the data
         for user in users_data:
             print(user)
 
     def manage_db_livres(self):
-        """Function used to manage details of a book in the database    """
-        # Charger la base de données des livres depuis le fichier JSON
+        """Function used to manage details of a book in the database"""
+        # Load the books database from the JSON file
         with open("book.json", "r+") as f:
             books_data = json.load(f)
 
-        # Faites quelque chose avec la base de données des livres, par exemple afficher les données
+        # Do something with the books database, for example display the data
         for book in books_data:
             print(book)

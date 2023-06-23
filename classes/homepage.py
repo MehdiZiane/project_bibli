@@ -209,8 +209,10 @@ class Homepage(Window):
             if not user["admin"]:
                 print(user["admin"])
                 messagebox.showinfo("Success", "Login successful!")
-                # self.user_label.config(text=f"Welcome, {user['prenom']} {user['nom']}")  # Mettez à jour le label avec les informations de l'utilisateur
-                self.logged_in_user = user  # Mettez à jour la variable logged_in_user dans BookDetailsPage
+                # self.user_label.config(text=f"Welcome, {user['prenom']} {user['nom']}")  # Update the label with the user's details
+                self.logged_in_user = (
+                    user  # Update the logged_in_user variable in BookDetailsPage
+                )
                 self.frame_right.destroy()
                 self.frame_left.destroy()
                 self.frame_titre.destroy()
