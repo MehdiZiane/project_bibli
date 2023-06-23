@@ -10,7 +10,11 @@ This is a Library Management System application developed in Python using the Tk
 - View borrowed books
 - Accept or deny book borrow requests (Admin only)
 - Return borrowed books(in dev)
-- User profile management
+- User profile management(in dev)
+- see book in the library
+- user can put book on a wishlist
+- management library s book (in dev)
+- management user from admin(in dev)
 
 ## Installation
 
@@ -20,7 +24,6 @@ This is a Library Management System application developed in Python using the Tk
 
 3. Clone the repository:
 
-   ```shell
    git clone https://github.com/your-username/library-management-system.git
 
-4. run main.py when u are in the folder project_bibli
+4. run main.py when you are in the folder project_bibli
