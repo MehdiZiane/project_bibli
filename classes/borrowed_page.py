@@ -12,6 +12,7 @@ class Borrowed_page:
         self.window = window
         self.callback = callback
         self.user_db = UserDatabase()
+        self.book_db = BookDetailsPage()
 
     def run_display_borrowed(self):
         """Function for displaying borrowed books in the graphical interface"""

@@ -24,8 +24,8 @@ class Book:
         self.category = category
         self.is_reserved = is_reserved
         self.reserved_by = reserved_by
-        is_borrowed = is_borrowed
-        borrowed_by = borrowed_by
+        self.is_borrowed = is_borrowed
+        self.borrowed_by = borrowed_by
 
     def reserve_book(self):
         """Function use to reserve a book"""
