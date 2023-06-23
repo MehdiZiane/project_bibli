@@ -46,7 +46,7 @@ class BookDetailsPage:
         """Function that checks if a book has already been reserved and if the user is logged in"""
 
         if self.logged_in_user:
-            if self.book.is_borrowed:
+            if not self.book.is_borrowed:
                 if not self.book.is_reserved:
                     self.book.is_reserved = True
                     self.book.reserved_by = self.logged_in_user["id"]
