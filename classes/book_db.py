@@ -1,4 +1,5 @@
 import json
+from classes.class_book import Book
 
 
 class BookDatabase:
@@ -6,6 +7,29 @@ class BookDatabase:
 
     def __init__(self):
         self.books = self.load_books_from_file()
+
+    def load_books(self):
+        try:
+            with open("./db/book.json", "r", encoding="utf-8") as file:
+                data = json.load(file)
+                book = [
+                    Book(
+                        item["id"],
+                        item["title"],
+                        item["author"],
+                        item["publication_year"],
+                        item["isbn"],
+                        item["gender"],
+                        item["is_reserved"],
+                        item["reserved_by"],
+                        item["is_borrowed"],
+                        item["borrowed_by"],
+                    )
+                    for item in data
+                ]
+                return book
+        except FileNotFoundError:
+            self.books = []
 
     def load_books_from_file(self):
         """Function that open a file to read a book

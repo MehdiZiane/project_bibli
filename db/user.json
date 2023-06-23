@@ -39,7 +39,7 @@
         "id": 5,
         "name": "ziane",
         "surname": "mehdi",
-        "password": "1234",
+        "password": "me",
         "email": "me",
         "admin": false,
         "wishlist": []
@@ -51,9 +51,6 @@
         "password": "ze",
         "email": "ze",
         "admin": true,
-        "wishlist": [
-            "Harry Potter et le prisonnier d'Azkaban",
-            "Harry Potter et le prisonnier d'Azkaban"
-        ]
+        "wishlist": []
     }
 ]

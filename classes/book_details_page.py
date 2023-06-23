@@ -46,19 +46,22 @@ class BookDetailsPage:
         """Function that checks if a book has already been reserved and if the user is logged in"""
 
         if self.logged_in_user:
-            if not self.book.is_reserved:
-                self.book.is_reserved = True
-                self.book.reserved_by = self.logged_in_user["id"]
-                self.update_reserve_cancel_buttons()
-                self.window.after(
-                    2 * 60 * 60 * 1000, self.cancel_reserve
-                )  # Lancer le timer de 2 heures
-                messagebox.showinfo("info", "book reserve successfully")
-                self.update_database()
-                print(self.book.is_reserved)
-                print(self.book.reserved_by)
+            if self.book.is_borrowed:
+                if not self.book.is_reserved:
+                    self.book.is_reserved = True
+                    self.book.reserved_by = self.logged_in_user["id"]
+                    self.update_reserve_cancel_buttons()
+                    self.window.after(
+                        2 * 60 * 60 * 1000, self.cancel_reserve
+                    )  # Lancer le timer de 2 heures
+                    messagebox.showinfo("info", "book reserve successfully")
+                    self.update_database()
+                    print(self.book.is_reserved)
+                    print(self.book.reserved_by)
+                else:
+                    messagebox.showinfo("Info", "This book is already booked.")
             else:
-                messagebox.showinfo("Info", "This book is already booked.")
+                messagebox.showinfo("Info", "This book is already borrowed.")
         else:
             messagebox.showinfo("Info", "You must be logged in to reserve a book.")
 

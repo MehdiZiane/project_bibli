@@ -3,6 +3,7 @@ import json
 from tkinter import messagebox
 from classes.class_book import Book
 from classes.user_db import UserDatabase
+from classes.book_db import BookDatabase
 from classes.window import Window
 from classes.book_details_page import BookDetailsPage
 from classes.user_and_admin_page import UserPage
@@ -20,6 +21,7 @@ class Homepage(Window):
         super().__init__()
         self.books = []
         self.user_db = UserDatabase()
+        self.book_db = BookDatabase()
         self.book_details_page = None
         self.logged_in_user = None
         self.run_display()
@@ -42,10 +44,10 @@ class Homepage(Window):
         self.frame_left.pack(side="left", padx=20, pady=20)
 
         # Loading books from a JSON file
-        self.load_books()
+        self.data = self.book_db.load_books()
 
         # Loop over books and display them
-        for book in self.books:
+        for book in self.data:
             button_text = f"{book.title} - {book.author}"
             button = tkinter.Button(
                 self.frame_left,
@@ -96,27 +98,6 @@ class Homepage(Window):
             self.frame_right, text="stop", command=self.stop_app
         )
         stop_button.pack(pady=10)
-
-    def load_books(self):
-        try:
-            with open("./db/book.json", "r", encoding="utf-8") as file:
-                data = json.load(file)
-                self.books = [
-                    Book(
-                        item["id"],
-                        item["title"],
-                        item["author"],
-                        item["publication_year"],
-                        item["isbn"],
-                        item["gender"],
-                        item["is_reserved"],
-                        item["reserved_by"],
-                    )
-                    for item in data
-                ]
-                print(self.books)
-        except FileNotFoundError:
-            self.books = []
 
     def create_account(self, name, surname, email, password, dialog):
         """Function that allows the user to enter the data needed to create an account in the library.
